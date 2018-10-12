@@ -38,7 +38,7 @@ class AliceFixturesCommand extends Command
 
         $loader = new NativeLoader();
         $loader->getFakerGenerator()->seed(1234);
-        $objectSet = $loader->loadFile( __DIR__ . '/fixtures.yml');
+        $objectSet = $loader->loadFile( 'src/DataFixtures/aliceFixtures.yaml');
 
         foreach ( $objectSet->getObjects() as $object ) {
 //            var_dump($object);

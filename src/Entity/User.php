@@ -256,23 +256,23 @@ class User
         return $this->pyoupyous;
     }
 
-    public function addPyoupyous(Pyoupyou $pyoupyous): self
+    public function addPyoupyou(Pyoupyou $pyoupyou): self
     {
-        if (!$this->pyoupyous->contains($pyoupyous)) {
-            $this->pyoupyous[] = $pyoupyous;
-            $pyoupyous->setUser($this);
+        if (!$this->pyoupyous->contains($pyoupyou)) {
+            $this->pyoupyous[] = $pyoupyou;
+            $pyoupyou->setUser($this);
         }
 
         return $this;
     }
 
-    public function removePyoupyous(Pyoupyou $pyoupyous): self
+    public function removePyoupyou(Pyoupyou $pyoupyou): self
     {
-        if ($this->pyoupyous->contains($pyoupyous)) {
-            $this->pyoupyous->removeElement($pyoupyous);
+        if ($this->pyoupyous->contains($pyoupyou)) {
+            $this->pyoupyous->removeElement($pyoupyou);
             // set the owning side to null (unless already changed)
-            if ($pyoupyous->getUser() === $this) {
-                $pyoupyous->setUser(null);
+            if ($pyoupyou->getUser() === $this) {
+                $pyoupyou->setUser(null);
             }
         }
 

@@ -158,23 +158,23 @@ class Project
         return $this->pyoupyous;
     }
 
-    public function addPyoupyous(Pyoupyou $pyoupyous): self
+    public function addPyoupyou(Pyoupyou $pyoupyou): self
     {
-        if (!$this->pyoupyous->contains($pyoupyous)) {
-            $this->pyoupyous[] = $pyoupyous;
-            $pyoupyous->setProject($this);
+        if (!$this->pyoupyous->contains($pyoupyou)) {
+            $this->pyoupyous[] = $pyoupyou;
+            $pyoupyou->setProject($this);
         }
 
         return $this;
     }
 
-    public function removePyoupyous(Pyoupyou $pyoupyous): self
+    public function removePyoupyou(Pyoupyou $pyoupyou): self
     {
-        if ($this->pyoupyous->contains($pyoupyous)) {
-            $this->pyoupyous->removeElement($pyoupyous);
+        if ($this->pyoupyous->contains($pyoupyou)) {
+            $this->pyoupyous->removeElement($pyoupyou);
             // set the owning side to null (unless already changed)
-            if ($pyoupyous->getProject() === $this) {
-                $pyoupyous->setProject(null);
+            if ($pyoupyou->getProject() === $this) {
+                $pyoupyou->setProject(null);
             }
         }
 
