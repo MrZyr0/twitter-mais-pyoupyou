@@ -1,15 +1,26 @@
 App\Entity\User:
   User{1..500}:
-    name: '<en_US:name()>'
-    mail: '<email()>'
-    phone: '<fr_CA:phoneNumber()>'
-    country: '@Country<numberBetween(1, 5)>'
-    userTags: ['@UserTag<numberBetween(1, 50)>', '@UserTag<numberBetween(1, 50)>', '@UserTag<numberBetween(1, 50)>']
+    email: '<email()>'
+    username: '<username()>'
+    password: '<fr_FR:phoneNumber()>'
+    lastname: '<fr_FR:lastName()>'
+    firstname: '<fr_FR:firstName()>'
+    role: '<randomElements($array = array ("ROLE_ADMIN","ROLE_USER"), $count = 1)>'
+    statut: '<randomElements($array = array ("Chef de projet","Admin", "Dev", "Artiste"), $count = 1)>'
+    projects: ['@Project*', '@Project*', '@Project*']
+    pyoupyous: ['@Pyoupyou*', '@Pyoupyou*', '@Pyoupyou*']
+    followers: ['@User*', '@User*', '@User*']
+    pinPyoupyou: ['@Pyoupyou*']
 
 App\Entity\Project:
-  Country{1..23}:
+  Project{1..23}:
     name: '<country()>'
+    descritption: '<realText($maxNbChars = 200)>'
+    users: ['@User*', '@User*', '@User*']
+    pyoupyous: ['@Pyoupyou*', '@Pyoupyou*', '@Pyoupyou*']
 
 App\Entity\Pyoupyou:
-  UserTag{1..50}:
-    name: '<languageCode()>'
+  Pyoupyou{1..50}:
+    message: '<realText($maxNbChars = 300)>'
+    date: '<dateTime()>'
+    user: ['@User*']
