@@ -10,12 +10,11 @@ App\Entity\User:
     projects: '<numberBetween(1, 3)>x @Project*'
     pyoupyous: '<numberBetween(1, 200)>x @Pyoupyou*'
     followers: '<numberBetween(1, 200)>x @User*'
-    pinPyoupyou: '@Pyoupyou*'
 
 App\Entity\Project:
   Project{1..23}:
     name: '<country()>'
-    description: '<sentence()>'
+    description: '<realtext()>'
     users: '<numberBetween(1, 10)>x @User*'
     pyoupyous: '<numberBetween(1, 100)>x @Pyoupyou*'
 
