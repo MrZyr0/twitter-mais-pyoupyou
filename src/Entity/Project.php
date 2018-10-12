@@ -48,9 +48,15 @@ class Project
      */
     private $users;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Pyoupyou", mappedBy="project")
+     */
+    private $pyoupyous;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->pyoupyous = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -139,6 +145,37 @@ class Project
     {
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pyoupyou[]
+     */
+    public function getPyoupyous(): Collection
+    {
+        return $this->pyoupyous;
+    }
+
+    public function addPyoupyous(Pyoupyou $pyoupyous): self
+    {
+        if (!$this->pyoupyous->contains($pyoupyous)) {
+            $this->pyoupyous[] = $pyoupyous;
+            $pyoupyous->setProject($this);
+        }
+
+        return $this;
+    }
+
+    public function removePyoupyous(Pyoupyou $pyoupyous): self
+    {
+        if ($this->pyoupyous->contains($pyoupyous)) {
+            $this->pyoupyous->removeElement($pyoupyous);
+            // set the owning side to null (unless already changed)
+            if ($pyoupyous->getProject() === $this) {
+                $pyoupyous->setProject(null);
+            }
         }
 
         return $this;
