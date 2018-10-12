@@ -74,9 +74,9 @@ class User
     private $projects;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\PyouPyou", mappedBy="user", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Pyoupyou", mappedBy="user", orphanRemoval=true)
      */
-    private $pyouPyous;
+    private $pyoupyous;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="followed")
@@ -84,14 +84,14 @@ class User
     private $followers;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\PyouPyou", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Pyoupyou", cascade={"persist", "remove"})
      */
     private $pinPyoupyou;
 
     public function __construct()
     {
         $this->projects = new ArrayCollection();
-        $this->pyouPyous = new ArrayCollection();
+        $this->pyoupyous = new ArrayCollection();
         $this->followers = new ArrayCollection();
     }
 
@@ -249,30 +249,30 @@ class User
     }
 
     /**
-     * @return Collection|PyouPyou[]
+     * @return Collection|Pyoupyou[]
      */
-    public function getPyouPyous(): Collection
+    public function getPyoupyous(): Collection
     {
-        return $this->pyouPyous;
+        return $this->pyoupyous;
     }
 
-    public function addPyouPyous(PyouPyou $pyouPyous): self
+    public function addPyoupyous(Pyoupyou $pyoupyous): self
     {
-        if (!$this->pyouPyous->contains($pyouPyous)) {
-            $this->pyouPyous[] = $pyouPyous;
-            $pyouPyous->setUser($this);
+        if (!$this->pyoupyous->contains($pyoupyous)) {
+            $this->pyoupyous[] = $pyoupyous;
+            $pyoupyous->setUser($this);
         }
 
         return $this;
     }
 
-    public function removePyouPyous(PyouPyou $pyouPyous): self
+    public function removePyoupyous(Pyoupyou $pyoupyous): self
     {
-        if ($this->pyouPyous->contains($pyouPyous)) {
-            $this->pyouPyous->removeElement($pyouPyous);
+        if ($this->pyoupyous->contains($pyoupyous)) {
+            $this->pyoupyous->removeElement($pyoupyous);
             // set the owning side to null (unless already changed)
-            if ($pyouPyous->getUser() === $this) {
-                $pyouPyous->setUser(null);
+            if ($pyoupyous->getUser() === $this) {
+                $pyoupyous->setUser(null);
             }
         }
 
@@ -305,12 +305,12 @@ class User
         return $this;
     }
 
-    public function getPinPyoupyou(): ?PyouPyou
+    public function getPinPyoupyou(): ?Pyoupyou
     {
         return $this->pinPyoupyou;
     }
 
-    public function setPinPyoupyou(?PyouPyou $pinPyoupyou): self
+    public function setPinPyoupyou(?Pyoupyou $pinPyoupyou): self
     {
         $this->pinPyoupyou = $pinPyoupyou;
 

@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\PyouPyou;
+use App\Entity\Pyoupyou;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method PyouPyou|null find($id, $lockMode = null, $lockVersion = null)
- * @method PyouPyou|null findOneBy(array $criteria, array $orderBy = null)
- * @method PyouPyou[]    findAll()
- * @method PyouPyou[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Pyoupyou|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Pyoupyou|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Pyoupyou[]    findAll()
+ * @method Pyoupyou[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PyouPyouRepository extends ServiceEntityRepository
+class PyoupyouRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, PyouPyou::class);
+        parent::__construct($registry, Pyoupyou::class);
     }
 
 //    /**
-//     * @return PyouPyou[] Returns an array of PyouPyou objects
+//     * @return Pyoupyou[] Returns an array of Pyoupyou objects
 //     */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class PyouPyouRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?PyouPyou
+    public function findOneBySomeField($value): ?Pyoupyou
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

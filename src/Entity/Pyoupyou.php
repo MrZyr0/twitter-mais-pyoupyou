@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PyouPyouRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PyoupyouRepository")
  */
-class PyouPyou
+class Pyoupyou
 {
     /**
      * @ORM\Id()
@@ -27,7 +27,7 @@ class PyouPyou
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="pyouPyous")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="pyoupyous")
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
