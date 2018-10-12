@@ -1,0 +1,14 @@
+{
+  "presets": [
+    [
+      "env", {
+      "modules": false,
+      "targets": {
+        "browsers": ["last 2 versions", "safari >= 7", "ie >= 7"]
+      }
+    }
+    ],
+    "stage-2"
+  ],
+  "plugins": ["syntax-dynamic-import"]
+}

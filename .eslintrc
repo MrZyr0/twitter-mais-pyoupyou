@@ -1,0 +1,15 @@
+{
+  "extends": "standard",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": "off",
+    "camelcase": "off",
+    "space-in-parens": "off",
+    "no-trailing-spaces": "off",
+    "padded-blocks": "off",
+    "no-cond-assign": "off"
+  }
+}
