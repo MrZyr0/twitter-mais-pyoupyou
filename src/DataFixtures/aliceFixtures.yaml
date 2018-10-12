@@ -1,0 +1,15 @@
+App\Entity\User:
+  User{1..500}:
+    name: '<en_US:name()>'
+    mail: '<email()>'
+    phone: '<fr_CA:phoneNumber()>'
+    country: '@Country<numberBetween(1, 5)>'
+    userTags: ['@UserTag<numberBetween(1, 50)>', '@UserTag<numberBetween(1, 50)>', '@UserTag<numberBetween(1, 50)>']
+
+App\Entity\Project:
+  Country{1..23}:
+    name: '<country()>'
+
+App\Entity\Pyoupyou:
+  UserTag{1..50}:
+    name: '<languageCode()>'
