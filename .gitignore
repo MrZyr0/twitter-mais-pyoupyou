@@ -2,6 +2,7 @@
 ###> symfony/framework-bundle ###
 /.env
 /composer.lock
+/symfony.lock
 /package-lock.json
 /public/bundles/
 /var/
@@ -20,3 +21,4 @@
 /.idea
 /node_modules
 symfony.lock
+composer.lock
