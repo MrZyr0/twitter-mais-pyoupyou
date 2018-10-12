@@ -32,6 +32,7 @@ class InstallCommand extends Command
 
         $io->section('Installation of composer dependencies');
         $process = new Process('composer i');
+        $process->setTimeout(300);
         $process->run(function ($type, $buffer) use ($io, $output)
         {
             $output->writeln('> ' . $buffer);
@@ -95,35 +96,55 @@ class InstallCommand extends Command
 
         $io->newLine(100);
 
+        $io->title('    Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
+
         $io->section('Installation of NodeJS dependencies');
         $process = new Process('npm i');
+        $process->setTimeout(300);
         $process->run(function ($type, $buffer) use ($io, $output)
         {
             $output->writeln('> ' . $buffer);
         });
 
         $io->newLine(100);
+
+        $io->title('    Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
 
         $io->section('Launch MySQL server');
         $process = new Process('sudo service mysql start');
+        $process->setTimeout(300);
         $process->run(function ($type, $buffer) use ($io, $output)
         {
             $output->writeln('> ' . $buffer);
         });
 
         $io->newLine(100);
+
+        $io->title('    Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
 
         $io->section('Create DataBase');
         $process = new Process('bin/console doctrine:database:create');
+        $process->setTimeout(300);
         $process->run(function ($type, $buffer) use ($io, $output)
         {
             $output->writeln('> ' . $buffer);
         });
 
         $io->newLine(100);
+
+        $io->title('    Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
 
         $io->section('Init DataBase');
         $process = new Process('bin/console doctrine:migration:migrate');
+        $process->setTimeout(300);
         $process->run(function ($type, $buffer) use ($io, $output)
         {
             $output->writeln('> ' . $buffer);
@@ -131,15 +152,24 @@ class InstallCommand extends Command
 
         $io->newLine(100);
 
+        $io->title('    Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
+
         $io->section('Run the server');
         $process = new Process('php bin/console server:start');
+        $process->setTimeout(300);
         $process->run(function ($type, $buffer) use ($io, $output)
         {
             $output->writeln('> ' . $buffer);
         });
 
+        $io->newLine(100);
 
+        $io->title('    Installation of the project');
         $io->progressFinish();
+        $io->newLine(10);
+
         $io->newLine(2);
         $io->success('Yeah ! The project is installed ! You can check it out in your favourite web browser :D');
     }
