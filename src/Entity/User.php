@@ -78,10 +78,21 @@ class User
      */
     private $pyouPyous;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="followed")
+     */
+    private $followers;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\PyouPyou", cascade={"persist", "remove"})
+     */
+    private $pinPyoupyou;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
         $this->pyouPyous = new ArrayCollection();
+        $this->followers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -264,6 +275,44 @@ class User
                 $pyouPyous->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getFollowers(): Collection
+    {
+        return $this->followers;
+    }
+
+    public function addFollower(User $follower): self
+    {
+        if (!$this->followers->contains($follower)) {
+            $this->followers[] = $follower;
+        }
+
+        return $this;
+    }
+
+    public function removeFollower(User $follower): self
+    {
+        if ($this->followers->contains($follower)) {
+            $this->followers->removeElement($follower);
+        }
+
+        return $this;
+    }
+
+    public function getPinPyoupyou(): ?PyouPyou
+    {
+        return $this->pinPyoupyou;
+    }
+
+    public function setPinPyoupyou(?PyouPyou $pinPyoupyou): self
+    {
+        $this->pinPyoupyou = $pinPyoupyou;
 
         return $this;
     }
