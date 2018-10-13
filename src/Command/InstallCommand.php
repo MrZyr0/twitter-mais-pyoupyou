@@ -108,6 +108,50 @@ class InstallCommand extends Command
             $output->writeln('> ' . $buffer);
         });
 
+
+        $io->newLine(100);
+
+        $io->title('    Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
+
+        $io->section('Setup file config');
+
+        $db_user = $io->ask('What is your databse username ?', function ($password)
+        {
+            if (empty($password))
+            {
+                throw new \RuntimeException('User cannot be empty.');
+            }
+
+            return $password;
+        });
+
+        $process = new Process('replace "db_user"' . $db_user . '-- .env.dist');
+        $process->setTimeout(300);
+        $process->run(function ($type, $buffer) use ($io, $output)
+        {
+            $output->writeln('> ' . $buffer);
+        });
+
+
+        $db_user = $io->askHidden('What is your databse password ?', function ($password)
+        {
+            if (empty($password))
+            {
+                throw new \RuntimeException('Password cannot be empty.');
+            }
+
+            return $password;
+        });
+
+        $process = new Process('replace "db_password"' . $db_user . '-- .env.dist');
+        $process->setTimeout(300);
+        $process->run(function ($type, $buffer) use ($io, $output)
+        {
+            $output->writeln('> ' . $buffer);
+        });
+
         $io->newLine(100);
 
         $io->title('    Installation of the project');
