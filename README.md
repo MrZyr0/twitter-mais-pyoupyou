@@ -67,8 +67,14 @@ Go where you want the project to be
 clone git@github.com:tentacode-classroom/twitter-mais-pyoupyou.git
 ```
 
-### Execute the install command
+### Install the composer dependencies
 Go into the project folder that you just clone
+```bash
+composer i
+```
+
+### Execute the install command
+<!-- Go into the project folder that you just clone -->
 ```bash
 php bin/console app:install
 ```
