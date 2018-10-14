@@ -14,7 +14,7 @@
         "symfony/framework-bundle": "*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "*",
-        "symfony/process": "*",
+        "symfony/process": "^4.1",
         "symfony/security-bundle": "*",
         "symfony/serializer-pack": "*",
         "symfony/swiftmailer-bundle": "^3.1",
