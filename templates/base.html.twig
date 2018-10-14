@@ -1,13 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="/dist{{ asset('main.css') }}">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}{{ title ~ ' - PyouPyou' }}{% endblock %}</title>
+        <link rel="stylesheet" href="/assets/css/custom_style.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block header %}
+            <header>
+                {{ include('layouts/menu.html.twig')}}
+            </header>
+        {% endblock %}
+
+        {% block main %}
+            <main role="main" class="container">
+                {% block h1 %}<h1>{{ title }}</h1>{% endblock %}
+
+                {% block body %}{% endblock %}
+
+                {% block footer %}
+                    <hr class="featurette-divider">
+                    <footer class="footer">
+                        <p>© 2018 - PyouPyou, un projet étudiant dans le cadre du cours de Framework PHP (Symfony) avec Gabriel Pillet à Lyon Ynov Campus - Développé par Antinéa GOUTARD && Julien SEIXAS</p>
+                        <span class="footer__return"><a href="#">Retourner en haut <i class="fas fa-arrow-up"></i></a></span>
+                    </footer>
+                {% endblock %}
+            </main>
+        {% endblock %}
+
         {% block javascripts %}{% endblock %}
     </body>
 </html>
