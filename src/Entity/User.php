@@ -68,31 +68,36 @@ class User
      */
     private $statut;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Project", mappedBy="users")
-     */
-    private $projects;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Pyoupyou", mappedBy="user", orphanRemoval=true)
      */
     private $pyoupyous;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="followed")
-     */
-    private $followers;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Pyoupyou", cascade={"persist", "remove"})
      */
     private $pinPyoupyou;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPublic;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Incubator", inversedBy="users")
+     */
+    private $incubator;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="users")
+     */
+    private $project;
+
     public function __construct()
     {
-        $this->projects = new ArrayCollection();
         $this->pyoupyous = new ArrayCollection();
-        $this->followers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -221,34 +226,6 @@ class User
     }
 
     /**
-     * @return Collection|Project[]
-     */
-    public function getProjects(): Collection
-    {
-        return $this->projects;
-    }
-
-    public function addProject(Project $project): self
-    {
-        if (!$this->projects->contains($project)) {
-            $this->projects[] = $project;
-            $project->addUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProject(Project $project): self
-    {
-        if ($this->projects->contains($project)) {
-            $this->projects->removeElement($project);
-            $project->removeUser($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Pyoupyou[]
      */
     public function getPyoupyous(): Collection
@@ -279,31 +256,6 @@ class User
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getFollowers(): Collection
-    {
-        return $this->followers;
-    }
-
-    public function addFollower(User $follower): self
-    {
-        if (!$this->followers->contains($follower)) {
-            $this->followers[] = $follower;
-        }
-
-        return $this;
-    }
-
-    public function removeFollower(User $follower): self
-    {
-        if ($this->followers->contains($follower)) {
-            $this->followers->removeElement($follower);
-        }
-
-        return $this;
-    }
 
     public function getPinPyoupyou(): ?Pyoupyou
     {
@@ -313,6 +265,42 @@ class User
     public function setPinPyoupyou(?Pyoupyou $pinPyoupyou): self
     {
         $this->pinPyoupyou = $pinPyoupyou;
+
+        return $this;
+    }
+
+    public function getIsPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): self
+    {
+        $this->isPublic = $isPublic;
+
+        return $this;
+    }
+
+    public function getIncubator(): ?Incubator
+    {
+        return $this->incubator;
+    }
+
+    public function setIncubator(?Incubator $incubator): self
+    {
+        $this->incubator = $incubator;
+
+        return $this;
+    }
+
+    public function getProject(): ?Project
+    {
+        return $this->project;
+    }
+
+    public function setProject(?Project $project): self
+    {
+        $this->project = $project;
 
         return $this;
     }

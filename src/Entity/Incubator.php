@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\IncubatorRepository")
  */
-class Project
+class Incubator
 {
     /**
      * @ORM\Id()
@@ -24,30 +24,14 @@ class Project
     private $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="simple_array", nullable=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="incubator", orphanRemoval=true)
      */
-    private $links = [];
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $picture;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $cover;
-
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Pyoupyou", mappedBy="project")
-     */
-    private $pyoupyous;
+    private $projects;
 
     /**
      * @ORM\Column(type="boolean")
@@ -55,18 +39,18 @@ class Project
     private $isPublic;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Incubator", inversedBy="projects")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity="App\Entity\Pyoupyou", mappedBy="incubator")
      */
-    private $incubator;
+    private $pyoupyous;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="project")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="incubator")
      */
     private $users;
 
     public function __construct()
     {
+        $this->projects = new ArrayCollection();
         $this->pyoupyous = new ArrayCollection();
         $this->users = new ArrayCollection();
     }
@@ -93,75 +77,38 @@ class Project
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
         return $this;
     }
 
-    public function getLinks(): ?array
-    {
-        return $this->links;
-    }
-
-    public function setLinks(?array $links): self
-    {
-        $this->links = $links;
-
-        return $this;
-    }
-
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(?string $picture): self
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-    public function getCover(): ?string
-    {
-        return $this->cover;
-    }
-
-    public function setCover(?string $cover): self
-    {
-        $this->cover = $cover;
-
-        return $this;
-    }
-
-
     /**
-     * @return Collection|Pyoupyou[]
+     * @return Collection|Project[]
      */
-    public function getPyoupyous(): Collection
+    public function getProjects(): Collection
     {
-        return $this->pyoupyous;
+        return $this->projects;
     }
 
-    public function addPyoupyou(Pyoupyou $pyoupyou): self
+    public function addProject(Project $project): self
     {
-        if (!$this->pyoupyous->contains($pyoupyou)) {
-            $this->pyoupyous[] = $pyoupyou;
-            $pyoupyou->setProject($this);
+        if (!$this->projects->contains($project)) {
+            $this->projects[] = $project;
+            $project->setIncubator($this);
         }
 
         return $this;
     }
 
-    public function removePyoupyou(Pyoupyou $pyoupyou): self
+    public function removeProject(Project $project): self
     {
-        if ($this->pyoupyous->contains($pyoupyou)) {
-            $this->pyoupyous->removeElement($pyoupyou);
+        if ($this->projects->contains($project)) {
+            $this->projects->removeElement($project);
             // set the owning side to null (unless already changed)
-            if ($pyoupyou->getProject() === $this) {
-                $pyoupyou->setProject(null);
+            if ($project->getIncubator() === $this) {
+                $project->setIncubator(null);
             }
         }
 
@@ -180,14 +127,33 @@ class Project
         return $this;
     }
 
-    public function getIncubator(): ?Incubator
+    /**
+     * @return Collection|Pyoupyou[]
+     */
+    public function getPyoupyous(): Collection
     {
-        return $this->incubator;
+        return $this->pyoupyous;
     }
 
-    public function setIncubator(?Incubator $incubator): self
+    public function addPyoupyou(Pyoupyou $pyoupyou): self
     {
-        $this->incubator = $incubator;
+        if (!$this->pyoupyous->contains($pyoupyou)) {
+            $this->pyoupyous[] = $pyoupyou;
+            $pyoupyou->setIncubator($this);
+        }
+
+        return $this;
+    }
+
+    public function removePyoupyou(Pyoupyou $pyoupyou): self
+    {
+        if ($this->pyoupyous->contains($pyoupyou)) {
+            $this->pyoupyous->removeElement($pyoupyou);
+            // set the owning side to null (unless already changed)
+            if ($pyoupyou->getIncubator() === $this) {
+                $pyoupyou->setIncubator(null);
+            }
+        }
 
         return $this;
     }
@@ -204,7 +170,7 @@ class Project
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->setProject($this);
+            $user->setIncubator($this);
         }
 
         return $this;
@@ -215,8 +181,8 @@ class Project
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
             // set the owning side to null (unless already changed)
-            if ($user->getProject() === $this) {
-                $user->setProject(null);
+            if ($user->getIncubator() === $this) {
+                $user->setIncubator(null);
             }
         }
 

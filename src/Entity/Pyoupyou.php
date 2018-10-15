@@ -37,6 +37,16 @@ class Pyoupyou
      */
     private $project;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPublic;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Incubator", inversedBy="pyoupyous")
+     */
+    private $incubator;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +96,30 @@ class Pyoupyou
     public function setProject(?Project $project): self
     {
         $this->project = $project;
+
+        return $this;
+    }
+
+    public function getIsPublic(): ?bool
+    {
+        return $this->isPublic;
+    }
+
+    public function setIsPublic(bool $isPublic): self
+    {
+        $this->isPublic = $isPublic;
+
+        return $this;
+    }
+
+    public function getIncubator(): ?Incubator
+    {
+        return $this->incubator;
+    }
+
+    public function setIncubator(?Incubator $incubator): self
+    {
+        $this->incubator = $incubator;
 
         return $this;
     }
