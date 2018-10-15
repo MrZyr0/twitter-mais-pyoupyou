@@ -12,7 +12,7 @@ class IncubatorController extends AbstractController
      */
     public function index()
     {
-        return $this->render('incubator/index.html.twig', [
+        return $this->render('user/incubator.html.twig', [
             'controller_name' => 'IncubatorController',
         ]);
     }

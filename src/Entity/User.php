@@ -85,10 +85,6 @@ class User
      */
     private $isPublic;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Incubator", inversedBy="users")
-     */
-    private $incubator;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="users")
@@ -277,18 +273,6 @@ class User
     public function setIsPublic(bool $isPublic): self
     {
         $this->isPublic = $isPublic;
-
-        return $this;
-    }
-
-    public function getIncubator(): ?Incubator
-    {
-        return $this->incubator;
-    }
-
-    public function setIncubator(?Incubator $incubator): self
-    {
-        $this->incubator = $incubator;
 
         return $this;
     }

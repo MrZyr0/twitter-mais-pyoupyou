@@ -12,7 +12,7 @@ class ResultController extends AbstractController
      */
     public function index()
     {
-        return $this->render('result/index.html.twig', [
+        return $this->render('user/result.html.twig', [
             'controller_name' => 'ResultController',
         ]);
     }

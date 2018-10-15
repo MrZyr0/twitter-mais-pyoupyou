@@ -43,16 +43,11 @@ class Incubator
      */
     private $pyoupyous;
 
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="incubator")
-     */
-    private $users;
 
     public function __construct()
     {
         $this->projects = new ArrayCollection();
         $this->pyoupyous = new ArrayCollection();
-        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -152,37 +147,6 @@ class Incubator
             // set the owning side to null (unless already changed)
             if ($pyoupyou->getIncubator() === $this) {
                 $pyoupyou->setIncubator(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->setIncubator($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->contains($user)) {
-            $this->users->removeElement($user);
-            // set the owning side to null (unless already changed)
-            if ($user->getIncubator() === $this) {
-                $user->setIncubator(null);
             }
         }
 

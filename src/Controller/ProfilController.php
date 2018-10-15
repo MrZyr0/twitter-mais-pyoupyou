@@ -14,6 +14,7 @@ class ProfilController extends AbstractController
     {
         return $this->render('user/profil.html.twig', [
             'controller_name' => 'ProfilController',
+            'title' => 'Profil'
         ]);
     }
 }

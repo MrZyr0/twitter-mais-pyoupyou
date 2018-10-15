@@ -7,16 +7,19 @@ App\Entity\User:
     firstname: '<fr_FR:firstName()>'
     role: 'ROLE_USER'
     statut: 'Dev'
-    projects: '<numberBetween(1, 3)>x @Project*'
+    projects: '@Project*'
     pyoupyous: '<numberBetween(1, 200)>x @Pyoupyou*'
-    followers: '<numberBetween(1, 200)>x @User*'
+    #followers: '<numberBetween(1, 200)>x @User*'
+    isPublic:
 
 App\Entity\Project:
   Project{1..23}:
     name: '<country()>'
     description: '<realtext()>'
-    users: '<numberBetween(1, 10)>x @User*'
     pyoupyous: '<numberBetween(1, 100)>x @Pyoupyou*'
+    isPublic:
+    incubator: '@Incubator*'
+    users: '<numberBetween(1, 10)>x @User*'
 
 App\Entity\Pyoupyou:
   Pyoupyou{1..1000}:
@@ -24,3 +27,13 @@ App\Entity\Pyoupyou:
     date: '<date_create()>'
     user: '@User*'
     project: '50%? @Project*'
+    isPublic:
+
+App\Entity\Incubator:
+  Pyoupyou{1..3}:
+    name: '<country()>'
+    description: '<realtext()>'
+    projects: '<numberBetween(1, 5)>x @Project*'
+    pyoupyous: '<numberBetween(1, 100)>x @Pyoupyou*'
+    users: '<numberBetween(1, 50)>x @User*'
+
