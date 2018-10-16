@@ -5,11 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
-class User
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -20,26 +22,54 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *  message = "Vous devez obligatoirement remplir ce chanmp !"
+     * )
+     * @Assert\Email(
+     *     message = "Ce n'est pas une adresse email valide !",
+     *     checkMX = true
+     * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *  message = "Vous devez obligatoirement remplir ce chanmp !"
+     * )
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *  message = "Vous devez obligatoirement remplir ce chanmp !"
+     * )
+     * @Assert\Regex(
+     *     pattern="/^[a-zA-Z0-9\w+\|]+$/",
+     *     match=false,
+     *     message = "Votre mot de passe doit être composé de : 2 MAJ + 2 min + 2 caractères spéciaux"
+     * )
+     * @Assert\Length(
+     *      min = 8,
+     *      minMessage = "Votre mot de passe doit faire 8 charactères minimum !",
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *  message = "Vous devez obligatoirement remplir ce chanmp !"
+     * )
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(
+     *  message = "Vous devez obligatoirement remplir ce chanmp !"
+     * )
      */
     private $firstname;
 
@@ -288,5 +318,48 @@ class User
         $this->project = $project;
 
         return $this;
+    }
+
+
+
+    public function getRoles(): ?array
+    {
+        return [$this->getRole()];
+    }
+
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+
+    }
+
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->password,
+            // see section on salt below
+            // $this->salt
+        ) = unserialize($serialized, array('allowed_classes' => false));
     }
 }

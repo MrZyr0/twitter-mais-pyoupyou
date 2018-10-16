@@ -1,18 +1,39 @@
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
+        pyoupyou_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+
+    encoders:
+        App\Entity\User:
+            algorithm: plaintext
+            # algorithm: bcrypt
+            # cost: 12
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: true
+            pattern:    ^/
+            anonymous: ~
 
             # activate different ways to authenticate
 
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            form_login:
+                login_path: login
+                check_path: login
+
+            logout:
+                path:   /logout
+                target: /
+                invalidate_session: true
+
+            provider: pyoupyou_provider
 
             # form_login: true
             # https://symfony.com/doc/current/security/form_login_setup.html
@@ -20,5 +41,14 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/, roles: ROLE_INCUB }
+        # - { path: ^/, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_ADMIN: [ROLE_ADMIN, ROLE_INCUB, ROLE_PROJECT, ROLE_USER]
+        ROLE_INCUB: [ROLE_INCUB, ROLE_PROJECT, ROLE_USER]
+        ROLE_PROJECT: [ROLE_PROJECT, ROLE_USER]
+        ROLE_USER: ROLE_USER
