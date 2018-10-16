@@ -7,9 +7,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
-use App\Form\signupType;
+use App\Form\SignUpType;
 
-class SignUpnController extends AbstractController
+class SignUpController extends AbstractController
 {
     /**
     * @Route("/signup", name="signup")

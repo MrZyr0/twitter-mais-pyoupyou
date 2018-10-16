@@ -2,11 +2,16 @@
 
 
 {% block home__pannel__right %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">Vous êtes Connecté·e !</h4>
         </div>
     {% endif %}
+    
     <form class="" action="{{ path('signin') }}" method="post">
         <input type="text" class="form-control" id="username" placeholder="Votre @" name="_username">
         <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="_password">
@@ -14,5 +19,5 @@
 
         <input type="hidden" name="_target_path" value="/" />
     </form>
-    <a href="{{ path('SignUp') }}"class="btn btn-default">S'inscrire</a>
+    <a href="{{ path('signup') }}"class="btn btn-default">S'inscrire</a>
 {% endblock %}

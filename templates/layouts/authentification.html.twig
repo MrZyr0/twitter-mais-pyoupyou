@@ -23,9 +23,6 @@
         </div>
         <div class="side-pannel home__pannel-right">
             <h2>{{ title }}</h2>
-            {% if error %}
-                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
                 {% block home__pannel__right %}{% endblock %}
         </div>
     {% endblock %}
