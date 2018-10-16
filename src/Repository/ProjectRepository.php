@@ -39,7 +39,7 @@ class ProjectRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('p')
             ->andWhere('p.isPublic = 1')
             ->where('p.name LIKE :value')
-            ->setParameter('value', $_value)
+            ->setParameter('value', '%'.$_value.'%')
             ->getQuery();
         return $qb->execute();
     }
@@ -51,7 +51,7 @@ class ProjectRepository extends ServiceEntityRepository
     public function findByValue(string $_value){
         $qb = $this->createQueryBuilder('p')
             ->andWhere('p.name LIKE :value')
-            ->setParameter('value', $_value)
+            ->setParameter('value', '%'.$_value.'%')
             ->getQuery();
         return $qb->execute();
     }

@@ -21,7 +21,6 @@ class ResultController extends AbstractController
 
         $results = $this->getResults($searchValue);
 
-        var_dump($results);
         return $this->render('user/result.html.twig', [
             'controller_name' => 'ResultController',
             'title'=>'Result',
@@ -31,16 +30,21 @@ class ResultController extends AbstractController
 
     function getResults($_searchValue){
 
-        $userRepo = $this->getDoctrine()->getRepository(User::class);
-        $projectRepo = $this->getDoctrine()->getRepository(Project::class);
-        $incubatorRepo = $this->getDoctrine()->getRepository(Incubator::class);
+        $classes = [
+            'User'=> User::class,
+            'Project' => Project::class,
+            'Incubator' => Incubator::class
+        ];
 
-        $repositories = [$userRepo, $projectRepo, $incubatorRepo];
+        $repositories = [];
         $data = [];
+        foreach ($classes as $key => $class){
+            $repositories [$key] = $this->getDoctrine()->getRepository($class);
+        }
 
-        foreach ($repositories as $repo){
-            $dataRepo = ($_searchValue != "")? $repo->findPublicByValue($_searchValue) : $repo->findPublic();
-            $data [] = $dataRepo;
+        foreach ($repositories as $key => $repo){
+            $dataRepo = ($_searchValue != "")? $repo->findPublicByValue($_searchValue) : $repo->findAllPublic();
+            $data [$key] = $dataRepo;
         }
 
         return $data;

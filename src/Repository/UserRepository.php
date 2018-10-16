@@ -39,7 +39,7 @@ class UserRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('u')
             ->andWhere('u.isPublic = 1')
             ->where('u.username LIKE :value OR u.firstname LIKE :value OR u.lastname LIKE :value')
-            ->setParameter('value', $_value)
+            ->setParameter('value', '%'.$_value.'%')
             ->getQuery();
         return $qb->execute();
     }
@@ -51,7 +51,7 @@ class UserRepository extends ServiceEntityRepository
     public function findByValue(string $_value){
         $qb = $this->createQueryBuilder('u')
             ->andWhere('u.username LIKE :value OR u.firstname LIKE :value OR u.lastname LIKE :value')
-            ->setParameter('value', $_value)
+            ->setParameter('value', '%'.$_value.'%')
             ->getQuery();
         return $qb->execute();
     }

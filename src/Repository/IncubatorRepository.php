@@ -39,7 +39,7 @@ class IncubatorRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('i')
             ->andWhere('i.isPublic = 1')
             ->where('i.name LIKE :value')
-            ->setParameter('value', $_value)
+            ->setParameter('value', '%'.$_value.'%')
             ->getQuery();
         return $qb->execute();
     }
@@ -51,7 +51,7 @@ class IncubatorRepository extends ServiceEntityRepository
     public function findByValue(string $_value){
         $qb = $this->createQueryBuilder('i')
             ->andWhere('i.name LIKE :value')
-            ->setParameter('value', $_value)
+            ->setParameter('value', '%'.$_value.'%')
             ->getQuery();
         return $qb->execute();
     }
