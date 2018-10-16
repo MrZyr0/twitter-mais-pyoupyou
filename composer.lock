@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1e43420927ea031c8f4ac603e2be7df",
+    "content-hash": "9a73e98069e2036ceb3da891fb4b39dc",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1330,6 +1330,44 @@
                 "sql"
             ],
             "time": "2014-01-12T16:20:24+00:00"
+        },
+        {
+            "name": "mnapoli/pretty",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mnapoli/pretty.git",
+                "reference": "d72ce3d637b508209dc12d1da0a0ef35ee7b098d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mnapoli/pretty/zipball/d72ce3d637b508209dc12d1da0a0ef35ee7b098d",
+                "reference": "d72ce3d637b508209dc12d1da0a0ef35ee7b098d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5|^7.0"
+            },
+            "bin": [
+                "pretty"
+            ],
+            "type": "project",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Run all code formatting tools with one command: pretty",
+            "keywords": [
+                "PSR-1",
+                "PSR-2",
+                "code",
+                "coding",
+                "formatting",
+                "pretty",
+                "standard",
+                "style"
+            ],
+            "time": "2018-10-04T00:36:34+00:00"
         },
         {
             "name": "monolog/monolog",
