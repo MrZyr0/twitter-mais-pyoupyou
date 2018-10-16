@@ -12,6 +12,11 @@ form *
     margin-bottom: 5px;
 }
 
+form input
+{
+    width : 215px!important;
+}
+
 .nav__logo
 {
     width: 40px;
@@ -146,4 +151,13 @@ form *
     padding-right: 5%;
 
     font-size: 90%;
+}
+
+
+
+/* Authentication */
+
+.auth__title
+{
+    margin-bottom: 20px;
 }

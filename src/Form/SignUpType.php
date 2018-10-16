@@ -16,20 +16,41 @@ class SignUpType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('firstName', TextType::class, [
-            'label' => 'Prénom',
+        ->add('firstname', TextType::class, [
+            'label' => false,
+            'attr' => [
+                'placeholder' => 'Prénom',
+            ],
         ])
-        ->add('lastName', TextType::class,[
-            'label' => 'Nom'
+        ->add('lastname', TextType::class,[
+            'label' => false,
+            'attr' => [
+                'placeholder' => 'Nom',
+            ],
+        ])
+        ->add('username', TextType::class,[
+            'label' => false,
+            'attr' => [
+                'placeholder' => "Nom d'utilisateur (@Nom)",
+            ],
         ])
         ->add('email', EmailType::class,[
-            'label' => 'Email'
+            'label' => false,
+            'attr' => [
+                'placeholder' => 'Email',
+            ],
         ])
         ->add('password', PasswordType::class,[
-            'label' => 'Mot de Passe'
+            'label' => false,
+            'attr' => [
+                'placeholder' => 'Mot de Passe',
+            ],
         ])
         ->add('submit', SubmitType::class, [
-            'label' => 'S\'inscrire'
+            'label' => "S'inscrire",
+            'attr' => [
+                'class' => 'btn btn-primary',
+            ]
         ]);
     }
     public function configureOptions(OptionsResolver $resolver)
@@ -39,3 +60,6 @@ class SignUpType extends AbstractType
         ]);
     }
 }
+
+
+// TODO: add support for picture + cover + links

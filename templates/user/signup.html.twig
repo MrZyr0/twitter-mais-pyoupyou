@@ -1,4 +1,5 @@
 {% extends 'layouts/authentification.html.twig'%}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 
 {% block home__pannel__right %}
@@ -7,11 +8,17 @@
             <h4 class="alert-heading">Vous êtes Inscrit·e !</h4>
         </div>
     {% endif %}
-    <form class="" action="{{ path('signup') }}" method="post">
-        <input type="text" class="form-control" id="username" placeholder="Votre @" name="_username">
-        <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="_password">
-        <button type="submit" class="btn btn-primary">S'inscrire</button>
 
-         <input type="hidden" name="_target_path" value="/login" />
-    </form>
+    {# form_start(form, {'attr': {'novalidate': 'novalidate'}}) #}
+    {{ form_start(form) }}
+        {{ form_row(form.firstname) }}
+        {{ form_row(form.lastname) }}
+        <hr/>
+        {{ form_row(form.username) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.password) }}
+        {{ form_row(form.submit) }}
+        <input type="hidden" name="_target_path" value="/login" />
+    {{ form_end(form) }}
+
 {% endblock %}
