@@ -4,15 +4,17 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
 use App\Form\SignUpType;
 
+
 class SignUpController extends AbstractController
 {
     /**
-    * @Route("/signup", name="signup")
+    * @Route("/SignUp", name="signup")
     */
     public function signup(Request $request, UserPasswordEncoderInterface $encoder)
     {

@@ -9,7 +9,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class SignInController extends AbstractController
 {
     /**
-    * @Route("/signin", name="signin")
+    * @Route("/SignIn", name="signin")
     */
     public function signin(AuthenticationUtils $authenticationUtils)
     {
