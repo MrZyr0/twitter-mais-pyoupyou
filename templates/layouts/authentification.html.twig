@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+
+{% block header %}{% endblock %}
+
+
+{% block main %}
+<main role="main" class="home__main">
+    {% block h1 %}
+        <h1 class="home__title">
+            <span class="home__title-1">Bienvenue su</span>
+            <span class="home__title-2">r PyouPyou !</span>
+        </h1>
+    {% endblock %}
+
+    {% block body %}
+        <div class="side-pannel home__pannel-left">
+            {% block home__pannel__left %}
+                <span><i class="fas fa-users"></i><p>Travailler en équipes</p></span>
+                <span><i class="fas fa-comments"></i><p>Faciliter l'échange entre collègues</p></span>
+                <span><i class="fas fa-search"></i><p>Retrouver facilement vos ressources</p></span>
+            {% endblock %}
+        </div>
+        <div class="side-pannel home__pannel-right">
+            <h2>{{ title }}</h2>
+            {% if error %}
+                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+                {% block home__pannel__right %}{% endblock %}
+        </div>
+    {% endblock %}
+
+    {% block footer %}
+        <footer class="footer">
+            <p>© 2018 - PyouPyou, un projet étudiant dans le cadre du cours de Framework PHP (Symfony) avec Gabriel Pillet à Lyon Ynov Campus - Développé par Antinéa GOUTARD && Julien SEIXAS</p>
+        </footer>
+    {% endblock %}
+</main>
+{% endblock %}
