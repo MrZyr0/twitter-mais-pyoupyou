@@ -23,7 +23,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
-     *  message = "Vous devez obligatoirement remplir ce chanmp !"
+     *  message = "Vous devez obligatoirement remplir ce champ !"
      * )
      * @Assert\Email(
      *     message = "Ce n'est pas une adresse email valide !",
@@ -35,7 +35,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
-     *  message = "Vous devez obligatoirement remplir ce chanmp !"
+     *  message = "Vous devez obligatoirement remplir ce champ !"
      * )
      */
     private $username;
@@ -43,7 +43,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
-     *  message = "Vous devez obligatoirement remplir ce chanmp !"
+     *  message = "Vous devez obligatoirement remplir ce champ !"
      * )
      * @Assert\Regex(
      *     pattern="/^[a-zA-Z0-9\w+\|]+$/",
@@ -60,7 +60,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
-     *  message = "Vous devez obligatoirement remplir ce chanmp !"
+     *  message = "Vous devez obligatoirement remplir ce champ !"
      * )
      */
     private $lastname;
@@ -68,7 +68,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(
-     *  message = "Vous devez obligatoirement remplir ce chanmp !"
+     *  message = "Vous devez obligatoirement remplir ce champ !"
      * )
      */
     private $firstname;
@@ -91,12 +91,12 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $role;
+    private $role = "ROLE_USER";
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $statut;
+    private $statut = 'user';
 
 
     /**
@@ -113,13 +113,18 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isPublic;
+    private $isPublic = false;
 
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="users")
      */
     private $project;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isActive = true;
 
     public function __construct()
     {
@@ -361,5 +366,17 @@ class User implements UserInterface, \Serializable
             // see section on salt below
             // $this->salt
         ) = unserialize($serialized, array('allowed_classes' => false));
+    }
+
+    public function getIsActive(): ?bool
+    {
+        return $this->isActive;
+    }
+
+    public function setIsActive(bool $isActive): self
+    {
+        $this->isActive = $isActive;
+
+        return $this;
     }
 }

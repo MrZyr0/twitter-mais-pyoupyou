@@ -20,9 +20,9 @@ class ProjectRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Project[] Returns an array of User objects
+     * @return Project[] Returns an array of Project objects
      */
-    public function findPublic(): array
+    public function findAllPublic(): array
     {
         $qb = $this->createQueryBuilder('p')
             ->andWhere('p.isPublic = 1')
@@ -32,7 +32,7 @@ class ProjectRepository extends ServiceEntityRepository
 
     /**
      * @param $_value
-     * @return Project[] Returns an array of User objects
+     * @return Project[] Returns an array of Project objects
      */
     public function findPublicByValue(string $_value): array
     {

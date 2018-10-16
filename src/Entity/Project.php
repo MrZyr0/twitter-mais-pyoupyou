@@ -52,7 +52,7 @@ class Project
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isPublic;
+    private $isPublic = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Incubator", inversedBy="projects")

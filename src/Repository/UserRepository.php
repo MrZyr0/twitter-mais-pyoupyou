@@ -22,7 +22,7 @@ class UserRepository extends ServiceEntityRepository
     /**
     * @return User[] Returns an array of User objects
     */
-    public function findPublic(): array
+    public function findAllPublic(): array
     {
         $qb = $this->createQueryBuilder('u')
             ->andWhere('u.isPublic = 1')

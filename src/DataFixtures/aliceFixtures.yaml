@@ -25,7 +25,7 @@ App\Entity\User:
     firstname: '<fr_FR:firstName()>'
     role: '<randomElement(<{roles}>)>'
     statut: '<randomElement(<{status}>)>'
-    project: '@Project*'
+    project: '50%? @Project*'
     pyoupyous: '<numberBetween(1, 200)>x @Pyoupyou*'
     isPublic: '<randomElement(<{isPublic}>)>'
 

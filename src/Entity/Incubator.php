@@ -36,7 +36,7 @@ class Incubator
     /**
      * @ORM\Column(type="boolean")
      */
-    private $isPublic;
+    private $isPublic = false;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Pyoupyou", mappedBy="incubator")
