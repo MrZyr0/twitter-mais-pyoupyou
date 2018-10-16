@@ -7,9 +7,9 @@ security:
 
     encoders:
         App\Entity\User:
-            algorithm: plaintext
-            # algorithm: bcrypt
-            # cost: 12
+            # algorithm: plaintext
+            algorithm: bcrypt
+            cost: 12
 
     firewalls:
         dev:
