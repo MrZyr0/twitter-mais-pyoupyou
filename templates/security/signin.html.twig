@@ -7,12 +7,12 @@
             <h4 class="alert-heading">Vous êtes Connecté·e !</h4>
         </div>
     {% endif %}
-    <form class="" action="{{ path('login') }}" method="post">
+    <form class="" action="{{ path('signin') }}" method="post">
         <input type="text" class="form-control" id="username" placeholder="Votre @" name="_username">
         <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="_password">
         <button type="submit" class="btn btn-primary">Se Connecter</button>
 
         <input type="hidden" name="_target_path" value="/" />
     </form>
-    <a href="{{ path('register') }}"class="btn btn-default">S'inscrire</a>
+    <a href="{{ path('SignUp') }}"class="btn btn-default">S'inscrire</a>
 {% endblock %}

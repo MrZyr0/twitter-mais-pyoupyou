@@ -1,0 +1,17 @@
+{% extends 'layouts/authentification.html.twig'%}
+
+
+{% block home__pannel__right %}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Vous êtes Inscrit·e !</h4>
+        </div>
+    {% endif %}
+    <form class="" action="{{ path('SignUp') }}" method="post">
+        <input type="text" class="form-control" id="username" placeholder="Votre @" name="_username">
+        <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="_password">
+        <button type="submit" class="btn btn-primary">S'inscrire</button>
+
+         <input type="hidden" name="_target_path" value="/login" />
+    </form>
+{% endblock %}

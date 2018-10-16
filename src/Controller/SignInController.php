@@ -6,19 +6,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class LoginController extends AbstractController
+class SignInController extends AbstractController
 {
     /**
-    * @Route("/login", name="login")
+    * @Route("/signin", name="signin")
     */
-    public function login(AuthenticationUtils $authenticationUtils)
+    public function signin(AuthenticationUtils $authenticationUtils)
     {
-        // get the login error if there is one
+        // get the signin error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', [
+        return $this->render('security/signin.html.twig', [
             'title' => 'Connexion',
             'last_username' => $lastUsername,
             'error'         => $error,
