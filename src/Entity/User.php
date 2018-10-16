@@ -221,6 +221,7 @@ class User
         return $this;
     }
 
+
     /**
      * @return Collection|Pyoupyou[]
      */

@@ -19,6 +19,43 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    /**
+    * @return User[] Returns an array of User objects
+    */
+    public function findPublic(): array
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->andWhere('u.isPublic = 1')
+            ->getQuery();
+        return $qb->execute();
+    }
+
+    /**
+     * @param $_value
+     * @return User[] Returns an array of User objects
+     */
+    public function findPublicByValue(string $_value): array
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->andWhere('u.isPublic = 1')
+            ->where('u.username LIKE :value OR u.firstname LIKE :value OR u.lastname LIKE :value')
+            ->setParameter('value', $_value)
+            ->getQuery();
+        return $qb->execute();
+    }
+
+    /**
+     * @param $_value
+     * @return User[] Returns an array of User objects
+     */
+    public function findByValue(string $_value){
+        $qb = $this->createQueryBuilder('u')
+            ->andWhere('u.username LIKE :value OR u.firstname LIKE :value OR u.lastname LIKE :value')
+            ->setParameter('value', $_value)
+            ->getQuery();
+        return $qb->execute();
+    }
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */

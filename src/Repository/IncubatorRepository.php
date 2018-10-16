@@ -19,32 +19,40 @@ class IncubatorRepository extends ServiceEntityRepository
         parent::__construct($registry, Incubator::class);
     }
 
-//    /**
-//     * @return Incubator[] Returns an array of Incubator objects
-//     */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Incubator[] Returns an array of Incubator objects
+     */
+    public function findAllPublic(): array
     {
-        return $this->createQueryBuilder('i')
-            ->andWhere('i.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('i.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->createQueryBuilder('i')
+            ->andWhere('i.isPublic = 1')
+            ->getQuery();
+        return $qb->execute();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Incubator
+    /**
+     * @param $_value
+     * @return Incubator[] Returns an array of Incubator objects
+     */
+    public function findPublicByValue(string $_value): array
     {
-        return $this->createQueryBuilder('i')
-            ->andWhere('i.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $qb = $this->createQueryBuilder('i')
+            ->andWhere('i.isPublic = 1')
+            ->where('i.name LIKE :value')
+            ->setParameter('value', $_value)
+            ->getQuery();
+        return $qb->execute();
     }
-    */
+
+    /**
+     * @param $_value
+     * @return Incubator[] Returns an array of Incubator objects
+     */
+    public function findByValue(string $_value){
+        $qb = $this->createQueryBuilder('i')
+            ->andWhere('i.name LIKE :value')
+            ->setParameter('value', $_value)
+            ->getQuery();
+        return $qb->execute();
+    }
 }

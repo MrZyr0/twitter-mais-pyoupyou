@@ -19,22 +19,42 @@ class ProjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Project::class);
     }
 
-//    /**
-//     * @return Project[] Returns an array of Project objects
-//     */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Project[] Returns an array of User objects
+     */
+    public function findPublic(): array
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.isPublic = 1')
+            ->getQuery();
+        return $qb->execute();
     }
-    */
+
+    /**
+     * @param $_value
+     * @return Project[] Returns an array of User objects
+     */
+    public function findPublicByValue(string $_value): array
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.isPublic = 1')
+            ->where('p.name LIKE :value')
+            ->setParameter('value', $_value)
+            ->getQuery();
+        return $qb->execute();
+    }
+
+    /**
+     * @param $_value
+     * @return Project[] Returns an array of Project objects
+     */
+    public function findByValue(string $_value){
+        $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.name LIKE :value')
+            ->setParameter('value', $_value)
+            ->getQuery();
+        return $qb->execute();
+    }
 
     /*
     public function findOneBySomeField($value): ?Project
