@@ -22,33 +22,25 @@ class SignUpController extends AbstractController
         $form->handleRequest($request);
 
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $user = $form->getData();
 
             $plainPassword = $user->getPassword();
             $encryptedPassword = $encoder->encodePassword($user, $plainPassword);
             $user->setPassword($encryptedPassword);
 
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('user_signup_success');
+            return $this->redirectToRoute('homepage');
         }
 
         return $this->render('user/signup.html.twig', [
             'title' => "Inscription",
             'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-    * @Route("/inscription/ok", name="user_signup_success")
-    */
-    public function confirmation()
-    {
-        return $this->render('user/signup_success.html.twig', [
-            'title' => 'Inscription',
         ]);
     }
 }
