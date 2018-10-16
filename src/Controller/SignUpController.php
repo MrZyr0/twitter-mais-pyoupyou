@@ -10,7 +10,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
 use App\Form\SignUpType;
 
-
 class SignUpController extends AbstractController
 {
     /**
@@ -24,8 +23,7 @@ class SignUpController extends AbstractController
         $form->handleRequest($request);
 
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
 
             $plainPassword = $user->getPassword();

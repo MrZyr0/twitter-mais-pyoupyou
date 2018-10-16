@@ -48,7 +48,8 @@ class UserRepository extends ServiceEntityRepository
      * @param $_value
      * @return User[] Returns an array of User objects
      */
-    public function findByValue(string $_value){
+    public function findByValue(string $_value)
+    {
         $qb = $this->createQueryBuilder('u')
             ->andWhere('u.username LIKE :value OR u.firstname LIKE :value OR u.lastname LIKE :value')
             ->setParameter('value', '%'.$_value.'%')

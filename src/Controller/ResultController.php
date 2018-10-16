@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Incubator;
 use App\Entity\Project;
 use App\Entity\User;
@@ -28,7 +27,8 @@ class ResultController extends AbstractController
         ]);
     }
 
-    function getResults($_searchValue){
+    function getResults($_searchValue)
+    {
 
         $classes = [
             'User'=> User::class,
@@ -38,16 +38,15 @@ class ResultController extends AbstractController
 
         $repositories = [];
         $data = [];
-        foreach ($classes as $key => $class){
-            $repositories [$key] = $this->getDoctrine()->getRepository($class);
+        foreach ($classes as $key => $class) {
+            $repositories[$key] = $this->getDoctrine()->getRepository($class);
         }
 
-        foreach ($repositories as $key => $repo){
+        foreach ($repositories as $key => $repo) {
             $dataRepo = ($_searchValue != "")? $repo->findPublicByValue($_searchValue) : $repo->findAllPublic();
-            $data [$key] = $dataRepo;
+            $data[$key] = $dataRepo;
         }
 
         return $data;
-
     }
 }

@@ -32,9 +32,8 @@ class MigCommand extends Command
         $io->section('Suppression de l\'ancienne table');
         $process = new Process('bin/console doctrine:database:drop --force');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
@@ -50,9 +49,8 @@ class MigCommand extends Command
         $io->section('Création de la table');
         $process = new Process('bin/console doctrine:database:create');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
@@ -68,9 +66,8 @@ class MigCommand extends Command
         $io->section('Application de la migration doctrine');
         $process = new Process('bin/console doctrine:migration:migrate');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
@@ -86,9 +83,8 @@ class MigCommand extends Command
         $io->section('Application des fixtures alices');
         $process = new Process('bin/console alice:fixture');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 

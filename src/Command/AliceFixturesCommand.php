@@ -17,7 +17,7 @@ class AliceFixturesCommand extends Command
 
     private $manager;
 
-    public function __construct( EntityManagerInterface $manager, ?string $name = null )
+    public function __construct(EntityManagerInterface $manager, ?string $name = null)
     {
         parent::__construct($name);
         $this->manager = $manager;
@@ -38,11 +38,11 @@ class AliceFixturesCommand extends Command
 
         $loader = new NativeLoader();
         $loader->getFakerGenerator()->seed(1234);
-        $objectSet = $loader->loadFile( 'src/DataFixtures/aliceFixtures.yaml');
+        $objectSet = $loader->loadFile('src/DataFixtures/aliceFixtures.yaml');
 
-        foreach ( $objectSet->getObjects() as $object ) {
+        foreach ($objectSet->getObjects() as $object) {
 //            var_dump($object);
-            $this->manager->persist( $object );
+            $this->manager->persist($object);
         }
 
         $this->manager->flush();

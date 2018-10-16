@@ -13,14 +13,11 @@ class HomepageController extends AbstractController
      */
     public function homepage(AuthorizationCheckerInterface $authorizationChecker)
     {
-        if ($authorizationChecker->isGranted('ROLE_USER') && $authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED'))
-        {
+        if ($authorizationChecker->isGranted('ROLE_USER') && $authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
             return $this->render('homepage.html.twig', [
                 'title' => 'Accueil',
             ]);
-        }
-        else
-        {
+        } else {
             return $this->redirectToRoute('signin');
         }
     }

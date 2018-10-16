@@ -16,10 +16,10 @@ class SignInType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('email', EmailType::class,[
+        ->add('email', EmailType::class, [
             'label' => 'Email'
         ])
-        ->add('password', PasswordType::class,[
+        ->add('password', PasswordType::class, [
             'label' => 'Mot de Passe'
         ])
         ->add('submit', SubmitType::class, [

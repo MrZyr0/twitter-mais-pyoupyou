@@ -48,7 +48,8 @@ class IncubatorRepository extends ServiceEntityRepository
      * @param $_value
      * @return Incubator[] Returns an array of Incubator objects
      */
-    public function findByValue(string $_value){
+    public function findByValue(string $_value)
+    {
         $qb = $this->createQueryBuilder('i')
             ->andWhere('i.name LIKE :value')
             ->setParameter('value', '%'.$_value.'%')

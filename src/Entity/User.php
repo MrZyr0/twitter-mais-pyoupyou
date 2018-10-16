@@ -8,8 +8,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-
-
 // TODO: Check chaque propriété pour qu'ils puissent être null au moment de l'inscription OU mettre une valeur par defaut && mettre un S à STATUS !!!!! + mettre une propriété isActive
 
 
@@ -346,7 +344,6 @@ class User implements UserInterface, \Serializable
 
     public function eraseCredentials()
     {
-
     }
 
     /** @see \Serializable::serialize() */

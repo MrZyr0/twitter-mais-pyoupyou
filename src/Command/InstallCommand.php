@@ -32,9 +32,8 @@ class InstallCommand extends Command
         $io->section('Installation of composer dependencies');
         $process = new Process('composer i');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
@@ -50,9 +49,8 @@ class InstallCommand extends Command
         $io->section('Installation of the doctrine dependencies');
         $process = new Process('composer require --dev doctrine/doctrine-fixtures-bundle');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
@@ -68,9 +66,8 @@ class InstallCommand extends Command
         $io->section('Installation of CURL');
         $process = new Process('sudo apt-get install curl');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
@@ -86,9 +83,8 @@ class InstallCommand extends Command
         $io->section('Installation of NodeJS 1/2');
         $process = new Process('curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
@@ -104,9 +100,8 @@ class InstallCommand extends Command
         $io->section('Installation of NodeJS 2/2');
         $process = new Process('sudo apt-get install -y nodejs');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
@@ -122,9 +117,8 @@ class InstallCommand extends Command
         $io->section('Installation of NodeJS dependencies');
         $process = new Process('npm i');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
@@ -139,39 +133,33 @@ class InstallCommand extends Command
 
         $io->section('Setup file config (.env)');
 
-        $dbname = $io->ask('What is your databse username ?', 'db_user', function ($dbname)
-        {
-        If (empty($dbname))
-            {
+        $dbname = $io->ask('What is your databse username ?', 'db_user', function ($dbname) {
+            if (empty($dbname)) {
                 throw new \RuntimeException('User cannot be empty.');
             }
 
             return $dbname;
         });
 
-        $process = new Process('replace "db_user" "' . $dbname . '" -- .env');
+        $process = new Process('replace "db_user" "'.$dbname.'" -- .env');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
-        $dbpassword = $io->askhidden('What is your databse password ?', function ($dbpassword)
-        {
-        If (empty($dbpassword))
-            {
+        $dbpassword = $io->askhidden('What is your databse password ?', function ($dbpassword) {
+            if (empty($dbpassword)) {
                 throw new \RuntimeException('Password cannot be empty.');
             }
 
             return $dbpassword;
         });
 
-        $process = new Process('replace "db_password" "' . $dbpassword . '" -- .env');
+        $process = new Process('replace "db_password" "'.$dbpassword.'" -- .env');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
@@ -187,13 +175,13 @@ class InstallCommand extends Command
         $io->section('Launch MySQL server');
         $process = new Process('sudo service mysql start');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
-            $process->wait();$process->wait();
+            $process->wait();
+        $process->wait();
         $io->newLine(20);
 
 
@@ -205,9 +193,8 @@ class InstallCommand extends Command
         $io->section('Create DataBase');
         $process = new Process('bin/console doctrine:database:create');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
@@ -223,9 +210,8 @@ class InstallCommand extends Command
         $io->section('Init DataBase');
         $process = new Process('bin/console doctrine:migration:migrate');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
@@ -241,9 +227,8 @@ class InstallCommand extends Command
         $io->section('Run the server');
         $process = new Process('php bin/console server:start');
         // $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output)
-        {
-            $output->writeln('> ' . $buffer);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
         });
 
 
@@ -253,7 +238,8 @@ class InstallCommand extends Command
 
 
         $io->title('Installation of the project');
-            $process->wait();$io->progressFinish();
+            $process->wait();
+        $io->progressFinish();
         $io->newLine(20);
 
         $io->newLine(2);
