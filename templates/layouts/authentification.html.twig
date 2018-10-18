@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-
 {% block body %}
 <main role="main" class="home__main">
     {% block h1 %}
@@ -10,13 +9,11 @@
         </h1>
     {% endblock %}
 
-    {% block body %}
         <div class="side-pannel home__pannel-left">
             {% block home__pannel__left %}
                 <span><i class="fas fa-users"></i><p>Travailler en équipes</p></span>
                 <span><i class="fas fa-comments"></i><p>Faciliter l'échange entre collègues</p></span>
                 <span><i class="fas fa-search"></i><p>Retrouver facilement vos ressources</p></span>
-            {% endblock %}
         </div>
         <div class="side-pannel home__pannel-right">
             <h2 class="auth__title">{{ title }}</h2>
