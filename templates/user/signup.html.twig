@@ -3,12 +3,6 @@
 
 
 {% block home__pannel__right %}
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        <div class="alert alert-success" role="alert">
-            <h4 class="alert-heading">Vous êtes Inscrit·e !</h4>
-        </div>
-    {% endif %}
-
     {# form_start(form, {'attr': {'novalidate': 'novalidate'}}) #}
     {{ form_start(form) }}
         {{ form_row(form.firstname) }}
