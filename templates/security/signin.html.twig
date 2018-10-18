@@ -10,8 +10,8 @@
         <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">Vous êtes Connecté·e !</h4>
         </div>
-    {% endif %}
-    
+        <a href="{{ path('logout') }}" class="btn btn-danger">Se déconnecter</a>
+    {% else %}
     <form class="" action="{{ path('signin') }}" method="post">
         <input type="text" class="form-control" id="username" placeholder="Votre @" name="_username">
         <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="_password">
@@ -20,4 +20,5 @@
         <input type="hidden" name="_target_path" value="/" />
     </form>
     <a href="{{ path('signup') }}"class="btn btn-default">S'inscrire</a>
+    {% endif %}
 {% endblock %}
