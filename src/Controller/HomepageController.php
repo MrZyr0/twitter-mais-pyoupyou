@@ -15,19 +15,17 @@ class HomepageController extends AbstractController
     public function homepage(AccessChecker $accessChecker)
     {
 
-        if (canReadHomepage())
+        if ($accessChecker->canReadHomepage())
         {
+            $user = $accessChecker->getUser();
             return $this->render('homepage.html.twig', [
                 'title' => 'Accueil',
+                'user' => $user;
             ]);
         }
         else
         {
             return $this->redirectToRoute('signin');
         }
-    }
-
-    public function getUserData(){
-        
     }
 }
