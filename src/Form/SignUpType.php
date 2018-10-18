@@ -22,25 +22,25 @@ class SignUpType extends AbstractType
                 'placeholder' => 'Prénom',
             ],
         ])
-        ->add('lastname', TextType::class,[
+        ->add('lastname', TextType::class, [
             'label' => false,
             'attr' => [
                 'placeholder' => 'Nom',
             ],
         ])
-        ->add('username', TextType::class,[
+        ->add('username', TextType::class, [
             'label' => false,
             'attr' => [
                 'placeholder' => "Nom d'utilisateur (@Nom)",
             ],
         ])
-        ->add('email', EmailType::class,[
+        ->add('email', EmailType::class, [
             'label' => false,
             'attr' => [
                 'placeholder' => 'Email',
             ],
         ])
-        ->add('password', PasswordType::class,[
+        ->add('password', PasswordType::class, [
             'label' => false,
             'attr' => [
                 'placeholder' => 'Mot de Passe',

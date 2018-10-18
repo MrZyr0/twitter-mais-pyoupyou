@@ -48,7 +48,8 @@ class ProjectRepository extends ServiceEntityRepository
      * @param $_value
      * @return Project[] Returns an array of Project objects
      */
-    public function findByValue(string $_value){
+    public function findByValue(string $_value)
+    {
         $qb = $this->createQueryBuilder('p')
             ->andWhere('p.name LIKE :value')
             ->setParameter('value', '%'.$_value.'%')
