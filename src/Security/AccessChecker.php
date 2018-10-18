@@ -6,6 +6,7 @@ namespace App\Security;
 
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use App\Entity\User;
+use App\Entity\Incubator;
 
 
 class AccessChecker
@@ -45,15 +46,51 @@ class AccessChecker
         return false;
     }
 
-    public function canReadIncub(Incub $incub): bool
+    public function canReadIncub(Incubator $incub): bool
     {
-        //faire des trucs ici
-        return true;
+        if ($incub->getIsPublic())
+        {
+            return true;
+        }
+        elseif ($this->user && $this->user != "anon.")
+        {
+            if ($this->user->getProject()->getIncubator()->getId() == $incub->getId())
+            {
+                return true;
+            };
+        }
+        return false;
     }
 
-    public function canReadProfile(User $user): bool
+    public function canReadProject(Project $project): bool
     {
-        //faire des trucs ici
-        return true;
+        if ($project->getIsPublic())
+        {
+            return true;
+        }
+        elseif ($this->user && $this->user != "anon.")
+        {
+            if ($this->user->getProject()->getId() == $project->getId())
+            {
+                return true;
+            };
+        }
+        return false;
+    }
+
+    public function canReadProfil(User $profil): bool
+    {
+        if ($profil->getIsPublic())
+        {
+            return true;
+        }
+        elseif ($this->user && $this->user != "anon.")
+        {
+            if ($this->user->getId() == $profil->getId())
+            {
+                return true;
+            };
+        }
+        return false;
     }
 }
