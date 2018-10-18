@@ -13,6 +13,7 @@ class SignInController extends AbstractController
     */
     public function signin(AuthenticationUtils $authenticationUtils)
     {
+
         // get the signin error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
