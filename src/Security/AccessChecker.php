@@ -20,12 +20,16 @@ class AccessChecker
 
     public function getUser() : User
     {
-        return $this->user;
+        if ($this->user && $this->user != "anon.")
+        {
+            return $this->user;
+        }
+        return null;
     }
 
     public function isConnected(): bool
     {
-        if ($this->user) {
+        if ($this->user && $this->user != "anon.") {
             return true;
         }
 
@@ -34,7 +38,7 @@ class AccessChecker
 
     public function canReadHomepage(): bool
     {
-        if ($this->user) {
+        if ($this->user && $this->user != "anon.") {
             return true;
         }
 
