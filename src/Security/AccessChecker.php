@@ -5,7 +5,7 @@
 namespace App\Security;
 
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use App\Entie;
+use App\Entity\User;
 
 
 class AccessChecker
@@ -16,9 +16,21 @@ class AccessChecker
     public function __construct(TokenStorageInterface $tokenStorage)
     {
         $this->user = $tokenStorage->getToken()->getUser();
-        dump($this->user);
     }
 
+    public function getUser() : User
+    {
+        return $this->user;
+    }
+
+    public function isConnected(): bool
+    {
+        if ($this->user) {
+            return true;
+        }
+
+        return false;
+    }
 
     public function canReadHomepage(): bool
     {
