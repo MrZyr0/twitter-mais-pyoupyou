@@ -81,7 +81,7 @@ class MigCommand extends Command
         $io->newLine(4);
 
         $io->section('Application des fixtures doctrine');
-        $process = new Process('bin/console doctrine:fixtures:load');
+        $process = new Process('bin/console alice:fixture');
         $process->setTimeout(300);
         $process->run(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
@@ -96,7 +96,7 @@ class MigCommand extends Command
         $io->newLine(4);
 
         $io->section('Application des fixtures alices');
-        $process = new Process('bin/console alice:fixture');
+        $process = new Process('bin/console doctrine:fixtures:load --append');
         $process->setTimeout(300);
         $process->run(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
