@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,16 @@ class Pyoupyou
      * @ORM\ManyToOne(targetEntity="App\Entity\Incubator", inversedBy="pyoupyous")
      */
     private $incubator;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="reposts")
+     */
+    private $repostUsers;
+
+    public function __construct()
+    {
+        $this->repostUsers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +132,34 @@ class Pyoupyou
     public function setIncubator(?Incubator $incubator): self
     {
         $this->incubator = $incubator;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getRepostUsers(): Collection
+    {
+        return $this->repostUsers;
+    }
+
+    public function addRepostUser(User $repostUser): self
+    {
+        if (!$this->repostUsers->contains($repostUser)) {
+            $this->repostUsers[] = $repostUser;
+            $repostUser->addRepost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRepostUser(User $repostUser): self
+    {
+        if ($this->repostUsers->contains($repostUser)) {
+            $this->repostUsers->removeElement($repostUser);
+            $repostUser->removeRepost($this);
+        }
 
         return $this;
     }

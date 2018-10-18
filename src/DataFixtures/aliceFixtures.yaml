@@ -20,13 +20,13 @@ App\Entity\User:
   User{1..500}:
     email: '<email()>'
     username: '<username()>'
-    password: '<fr_FR:phoneNumber()>'
+    password: 'Hello'
     lastname: '<fr_FR:lastName()>'
     firstname: '<fr_FR:firstName()>'
     role: '<randomElement(<{roles}>)>'
     statut: '<randomElement(<{status}>)>'
     project: '50%? @Project*'
-    pyoupyous: '<numberBetween(1, 200)>x @Pyoupyou*'
+    reposts: '<numberBetween(10, 100)>x @Pyoupyou*'
     isPublic: '<randomElement(<{isPublic}>)>'
 
 App\Entity\Project:
@@ -55,3 +55,7 @@ App\Entity\Incubator:
     isPublic: '<randomElement(<{isPublic}>)>'
     pyoupyous: '<numberBetween(1, 100)>x @Pyoupyou*'
 
+App\Entity\Friend:
+  Friend{1..1000}:
+    userFrom: '@User*'
+    userTo: '@User*'

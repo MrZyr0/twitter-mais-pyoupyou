@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Pyoupyou;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -19,32 +20,31 @@ class PyoupyouRepository extends ServiceEntityRepository
         parent::__construct($registry, Pyoupyou::class);
     }
 
-//    /**
-//     * @return Pyoupyou[] Returns an array of Pyoupyou objects
-//     */
-    /*
-    public function findByExampleField($value)
-    {
+    /**
+     * @param $_id
+     * @return Pyoupyou[] Returns an array of Pyoupyou objects
+     */
+    public function findAllByUser($_id){
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->join('p.user','u')
+            ->join('p.repostUsers','r')
+            ->andWhere('u.id=:id OR r.id=:id')
+            ->setParameter('id', $_id)
+            ->orderBy('p.date')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Pyoupyou
-    {
+    /**
+     * @param $_user
+     * @return Pyoupyou[] Returns an array of Pyoupyou objects
+     */
+    public function findUserFeed($_user){
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
+            ->join('p.user',  'u')
+            ->join('u.followed',  'f', 'WITH', 'f.userFrom = :user')
+            ->setParameter('user', $_user)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
     }
-    */
 }

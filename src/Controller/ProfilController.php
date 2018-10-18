@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Project;
+use App\Entity\Pyoupyou;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,21 +16,29 @@ class ProfilController extends AbstractController
      */
     public function index(AccessChecker $accessChecker, $id)
     {
-        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
-
+        $user = $this->getUserData($id);
+        $pyoupyous = $this->getPyoupyous($id);
         if($accessChecker->canReadProfil($user)){
-            $userConnected = $accessChecker->getUser();
             return $this->render('user/profil.html.twig', [
                 'controller_name' => 'ProfilController',
                 'entity' => $user,
-                'user' => $userConnected,
-                'title' => 'Profil'
+                'user' => $accessChecker->getUser(),
+                'title' => 'Profil',
+                'pyoupyous' => $pyoupyous
             ]);
         }
         else
         {
             return $this->redirectToRoute('signin');
         }
+    }
+
+    public function getUserData($_id){
+        return $this->getDoctrine()->getRepository(User::class)->find($_id);
+    }
+
+    public function getPyoupyous($_id){
+        return $this->getDoctrine()->getRepository(Pyoupyou::class)->findAllByUser($_id);
     }
 
 }
