@@ -26,7 +26,7 @@ class SignUpController extends AbstractController
         }
         $user = new User();
 
-        $form = $this->createForm(signupType::class, $user);
+        $form = $this->createForm(SignUpType::class, $user);
         $form->handleRequest($request);
 
 
