@@ -31,7 +31,8 @@ class AccessChecker
 
     public function isConnected(): bool
     {
-        if ($this->user && $this->user != "anon.") {
+        if ($this->user && $this->user != "anon.")
+        {
             return true;
         }
 
@@ -40,7 +41,8 @@ class AccessChecker
 
     public function canReadHomepage(): bool
     {
-        if ($this->user && $this->user != "anon.") {
+        if ($this->user && $this->user != "anon.")
+        {
             return true;
         }
 
