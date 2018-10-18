@@ -1,3 +1,4 @@
+{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 <div class="shadow pz bpi afo">
     <div class="qa avz">
         <a href="profile/index.html">
@@ -13,15 +14,15 @@
 <div class="shadow pz bpi afo">
     <div class="qf" style="background-image: url(http://placehold.it/200x200);"></div>
     <div class="qa avz">
-        <a href="profile/index.html">
+        <a href="{{ path('profil', {'id': user.id} ) }}">
             <img class="rounded-circle img-fluid d-block mx-auto bpj" src="http://placehold.it/200x200" alt="">
         </a>
 
         <h6 class="qb">
-            <a class="boa" href="profile/index.html">Dave Gamache</a>
+            <a class="boa" href="{{ path('profil', {'id': user.id} ) }}">{{ user.firstname }}  {{ user.lastname }}</a>
         </h6>
 
-        <p class="afo">I wish i was a little bit taller, wish i was a baller, wish i had a girl… also.</p>
+        <p class="afo">{{ user.username }}</p>
 
         <ul class="bpk">
             <li class="bpl">
@@ -38,23 +39,32 @@
                 </a>
             </li>
         </ul>
+
+        <a class="boa" href="{{ path('logout') }}"><i class="fas fa-power-off fa-2x"></i></a>
     </div>
 </div>
+
+{% if user.project %}
+{% set project = user.project %}
+{% set incubator = user.project.incubator %}
 <div class="shadow pz vp vy afo">
     <div class="qa">
-        <h6 class="afh">Incubator Name <small>· <a href="#">Edit</a></small></h6>
+        <h6 class="afh">{{ incubator.name }} <small>· <a href="{{ path('incubator', {'id': incubator.id}) }}">View</a></small></h6>
         <ul class="dc axg">
-            <li>Info <a href="#">Oh, Canada</a>
-            <li>Info 2 <a href="#">Obama</a>
+            <li>Description :  <a href="#">{{ incubator.description }}</a>
+            <li>Info 2 <a href="#">incubator</a>
         </ul>
     </div>
 </div>
 <div class="shadow pz vp vy afo">
     <div class="qa">
-        <h6 class="afh">Incubator Name <small>· <a href="#">Edit</a></small></h6>
+        <h6 class="afh">{{ project.name }} <small>· <a href="{{ path('project', {'id': project.id}) }}">View</a></small></h6>
         <ul class="dc axg">
-            <li>Info <a href="#">Oh, Canada</a>
+            <li>Description :  <a href="#">{{ project.description }}</a>
             <li>Info 2 <a href="#">Obama</a>
         </ul>
     </div>
 </div>
+
+{% endif %}
+{% endif %}

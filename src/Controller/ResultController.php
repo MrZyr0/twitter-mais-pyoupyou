@@ -8,13 +8,14 @@ use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Security\AccessChecker;
 
 class ResultController extends AbstractController
 {
     /**
      * @Route("/result", name="result")
      */
-    public function index(Request $request)
+    public function index(Request $request, AccessChecker $accessChecker)
     {
         $searchValue = $request->get('searchValue');
 
@@ -23,13 +24,13 @@ class ResultController extends AbstractController
         return $this->render('user/result.html.twig', [
             'controller_name' => 'ResultController',
             'title'=>'Result',
-            'results'=>$results
+            'results'=>$results,
+            'user' =>$accessChecker->getUser()
         ]);
     }
 
     function getResults($_searchValue)
     {
-
         $classes = [
             'User'=> User::class,
             'Project' => Project::class,
