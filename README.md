@@ -1,5 +1,7 @@
 # twitter-mais-pyoupyou
 
+PyouPyou, un projet étudiant dans le cadre du cours de Framework PHP (Symfony) avec Gabriel Pillet à Lyon Ynov Campus. Développé par Antinéa GOUTARD (@Maengast) && Julien SEIXAS (@MrZyr0)
+
 
 ## Install
 
