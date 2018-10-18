@@ -26,7 +26,7 @@ class MigCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $io->title('Mise à jour de la BDD');
-        $io->progressStart(4);
+        $io->progressStart(5);
         $io->newLine(4);
 
         $io->section('Suppression de l\'ancienne table');
@@ -75,6 +75,21 @@ class MigCommand extends Command
         $io->newLine(20);
 
 
+
+        $io->title('Mise à jour de la BDD');
+        $io->progressAdvance();
+        $io->newLine(4);
+
+        $io->section('Application des fixtures doctrine');
+        $process = new Process('doctrine:fixtures:load');
+        $process->setTimeout(300);
+        $process->run(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
+        });
+
+
+        $process->wait();
+        $io->newLine(20);
 
         $io->title('Mise à jour de la BDD');
         $io->progressAdvance();
