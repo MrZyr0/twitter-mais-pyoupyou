@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
 use App\Form\SignUpType;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+
 
 class SignUpController extends AbstractController
 {
@@ -23,7 +25,8 @@ class SignUpController extends AbstractController
         $form->handleRequest($request);
 
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $user = $form->getData();
 
             $plainPassword = $user->getPassword();
@@ -34,6 +37,19 @@ class SignUpController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+
+
+
+            $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+            $this->get('security.token_storage')->setToken($token);
+
+            // If the firewall name is not main, then the set value would be instead:
+            // $this->get('session')->set('_security_XXXFIREWALLNAMEXXX', serialize($token));
+            $this->get('session')->set('_security_main', serialize($token));
+
+            // Fire the login event manually
+            // $event = new InteractiveLoginEvent($request, $token);
+            // $this->get("event_dispatcher")->dispatch("security.interactive_login", $event);
 
             return $this->redirectToRoute('homepage');
         }
