@@ -81,7 +81,7 @@ class MigCommand extends Command
         $io->newLine(4);
 
         $io->section('Application des fixtures doctrine');
-        $process = new Process('doctrine:fixtures:load');
+        $process = new Process('bin/console doctrine:fixtures:load');
         $process->setTimeout(300);
         $process->run(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
