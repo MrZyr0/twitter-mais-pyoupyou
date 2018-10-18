@@ -10,21 +10,15 @@ use App\Entity\User;
 use App\Form\SignUpType;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
-use App\Security\AccessChecker;
+
 
 class SignUpController extends AbstractController
 {
     /**
     * @Route("/SignUp", name="signup")
     */
-    public function signup(Request $request, UserPasswordEncoderInterface $encoder, AccessChecker $accessChecker)
+    public function signup(Request $request, UserPasswordEncoderInterface $encoder)
     {
-
-        if ($accessChecker->isConnected())
-        {
-            return $this->redirectToRoute('signin');
-        }
-
         $user = new User();
 
         $form = $this->createForm(signupType::class, $user);
