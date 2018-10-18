@@ -5,19 +5,24 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use App\Security\AccessChecker;
 
 class HomepageController extends AbstractController
 {
     /**
      * @Route("/", name="homepage")
      */
-    public function homepage(AuthorizationCheckerInterface $authorizationChecker)
+    public function homepage(AccessChecker $accessChecker)
     {
-        if ($authorizationChecker->isGranted('ROLE_USER') && $authorizationChecker->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+
+        if (canReadHomepage())
+        {
             return $this->render('homepage.html.twig', [
                 'title' => 'Accueil',
             ]);
-        } else {
+        }
+        else
+        {
             return $this->redirectToRoute('signin');
         }
     }
