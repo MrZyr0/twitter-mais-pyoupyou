@@ -31,11 +31,6 @@ form input
     border-color: #ccc;
 }
 
-.footer__desc
-{
-    font-size: 11px;
-}
-
 .side-pannel
 {
     display: flex;
@@ -139,8 +134,38 @@ form input
     display: flex;
     flex-direction: row;
 
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
+
+    width: 75%;
+
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    z-index: 3;
+
+    padding: 1%;
+
+    border-top: black 1px solid;
+
+    font-size: 90%;
+    font-weight: 600;
+
+    background-color: white;
+}
+
+.footer__desc
+{
+    margin: 0;
+}
+
+.authentication__footer
+{
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
 
     width: 100%;
 
@@ -151,9 +176,8 @@ form input
     padding-right: 5%;
 
     font-size: 90%;
+    font-weight: 600;
 }
-
-
 
 /* Authentication */
 

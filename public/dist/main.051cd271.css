@@ -52,7 +52,7 @@ html {
 @-ms-viewport {
   width: device-width; }
 
-article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+article, aside, figcaption, figure, header, hgroup, main, nav, section {
   display: block; }
 
 body {
@@ -28623,89 +28623,6 @@ button.bg-lighter:focus {
     -webkit-transform: translateY(0px);
             transform: translateY(0px); } }
 
-footer {
-  background-color: #fff; }
-
-.footer {
-  padding-top: 3rem; }
-
-.footer .list-unstyled li a {
-  display: inline-block;
-  padding: .125rem 0; }
-
-.footer-light p {
-  color: rgba(5, 23, 42, 0.65); }
-
-.footer-light .heading {
-  color: rgba(5, 23, 42, 0.9); }
-
-.footer-light .list-unstyled li a {
-  color: rgba(5, 23, 42, 0.65); }
-
-.footer-light .list-unstyled li a:hover {
-  color: rgba(5, 23, 42, 0.9); }
-
-.footer-light .copyright a {
-  color: #495057; }
-
-.footer-light .copyright a:hover {
-  color: #343a40; }
-
-.footer-dark p {
-  color: rgba(255, 255, 255, 0.8); }
-
-.footer-dark .heading {
-  color: white; }
-
-.footer-dark .list-unstyled li a {
-  color: rgba(255, 255, 255, 0.8); }
-
-.footer-dark .list-unstyled li a:hover {
-  color: rgba(255, 255, 255, 0.9); }
-
-.footer-dark .copyright a {
-  color: rgba(255, 255, 255, 0.9); }
-
-.footer-dark .copyright a:hover {
-  color: white; }
-
-.footer-rotate {
-  position: relative;
-  overflow: hidden;
-  margin-top: -26rem;
-  padding-top: 26rem; }
-
-.footer-rotate:before {
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  right: calc(50% - 1000px);
-  display: block;
-  width: 100%;
-  min-width: 2000px;
-  height: 1000px;
-  content: '';
-  pointer-events: none; }
-
-.footer-dark {
-  color: #adb5bd;
-  background-color: #020b13; }
-
-.footer-dark .heading {
-  color: #e9ecef; }
-
-.footer-dark .nav .nav-item .nav-link,
-.footer-dark .list-unstyled li a,
-.footer-dark .footer-link {
-  color: #adb5bd; }
-
-.footer-dark .nav .nav-item .nav-link:hover,
-.footer-dark .list-unstyled li a:hover,
-.footer-dark .footer-link:hover {
-  color: #fff; }
-
-.footer-dark hr {
-  border-color: rgba(253, 244, 236, 0.1); }
 
 /* Form controls */
 .form-control:focus::-ms-input-placeholder {
