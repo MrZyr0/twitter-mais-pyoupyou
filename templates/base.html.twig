@@ -13,7 +13,7 @@
         <div class="by">
             <div class="dp">
                 {% block header %}
-                    <div class="fj hidden"></div>
+                    <div class="fj hidden" id="top"></div>
                     <header class="fj menu">
                         {{ include('layouts/menu.html.twig')}}
                     </header>
@@ -27,10 +27,9 @@
         </div>
 
         {% block footer %}
-            <hr class="featurette-divider">
             <footer class="footer">
-                <p>© 2018 - PyouPyou, un projet étudiant dans le cadre du cours de Framework PHP (Symfony) avec Gabriel Pillet à Lyon Ynov Campus - Développé par Antinéa GOUTARD && Julien SEIXAS</p>
-                <span class="footer__return"><a href="#">Retourner en haut <i class="fas fa-arrow-up"></i></a></span>
+                <p class="footer__desc">© 2018 - PyouPyou, un projet étudiant dans le cadre du cours de Framework PHP (Symfony) avec Gabriel Pillet à Lyon Ynov Campus <br> Développé par Antinéa GOUTARD && Julien SEIXAS</p>
+                <a href="#top" class="footer__return"><i class="fas fa-arrow-up fa-2x"></i></a>
             </footer>
         {% endblock %}
 
