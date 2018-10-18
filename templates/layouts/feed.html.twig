@@ -1,6 +1,6 @@
     <ul class="ca bow box afo">
-        {% for pyoupyou in entity.pyoupyous %}
-            {% set user = pyoupyou.user %}
+        {% for pyoupyou in pyoupyous %}
+            {% set pyoupyouUser = pyoupyou.user %}
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <li class="rv b agz">
                     <img
@@ -8,8 +8,12 @@
                             src="assets/img/avatar-dhg.png">
                     <div class="rw">
                         <div class="bpb">
-                            <small class="acx axc">4 min</small>
-                            <h6>{{ user.firstname }} {{ user.lastname }}</h6>
+                            <small class="acx axc">{{ pyoupyou.date|date('d/m H:i') }}</small>
+                            <h6>{{ pyoupyouUser.firstname }} {{ pyoupyouUser.lastname }}
+                                {% if pyoupyouUser != user %}
+                                     - retweet by {{ user.firstname }} {{ user.lastname }}
+                                {% endif %}
+                            </h6>
                         </div>
 
                         <p>{{ pyoupyou.message }}</p>

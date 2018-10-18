@@ -129,9 +129,27 @@ class User implements UserInterface, \Serializable
      */
     private $isActive = true;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Pyoupyou", inversedBy="repostUsers")
+     */
+    private $reposts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Friend", mappedBy="userTo")
+     */
+    private $followers;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Friend", mappedBy="userFrom")
+     */
+    private $followed;
+
     public function __construct()
     {
         $this->pyoupyous = new ArrayCollection();
+        $this->reposts = new ArrayCollection();
+        $this->followers = new ArrayCollection();
+        $this->followed = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -378,6 +396,94 @@ class User implements UserInterface, \Serializable
     public function setIsActive(bool $isActive): self
     {
         $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pyoupyou[]
+     */
+    public function getReposts(): Collection
+    {
+        return $this->reposts;
+    }
+
+    public function addRepost(Pyoupyou $repost): self
+    {
+        if (!$this->reposts->contains($repost)) {
+            $this->reposts[] = $repost;
+        }
+
+        return $this;
+    }
+
+    public function removeRepost(Pyoupyou $repost): self
+    {
+        if ($this->reposts->contains($repost)) {
+            $this->reposts->removeElement($repost);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Friend[]
+     */
+    public function getFollowers(): Collection
+    {
+        return $this->followers;
+    }
+
+    public function addFollower(Friend $follower): self
+    {
+        if (!$this->followers->contains($follower)) {
+            $this->followers[] = $follower;
+            $follower->setUserTo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollower(Friend $follower): self
+    {
+        if ($this->followers->contains($follower)) {
+            $this->followers->removeElement($follower);
+            // set the owning side to null (unless already changed)
+            if ($follower->getUserTo() === $this) {
+                $follower->setUserTo(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Friend[]
+     */
+    public function getFollowed(): Collection
+    {
+        return $this->followed;
+    }
+
+    public function addFollowed(Friend $followed): self
+    {
+        if (!$this->followed->contains($followed)) {
+            $this->followed[] = $followed;
+            $followed->setUserFrom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFollowed(Friend $followed): self
+    {
+        if ($this->followed->contains($followed)) {
+            $this->followed->removeElement($followed);
+            // set the owning side to null (unless already changed)
+            if ($followed->getUserFrom() === $this) {
+                $followed->setUserFrom(null);
+            }
+        }
 
         return $this;
     }

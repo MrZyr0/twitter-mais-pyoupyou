@@ -2,21 +2,21 @@
 
 namespace App\Repository;
 
-use App\Entity\Friends;
+use App\Entity\Friend;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Friends|null find($id, $lockMode = null, $lockVersion = null)
- * @method Friends|null findOneBy(array $criteria, array $orderBy = null)
- * @method Friends[]    findAll()
- * @method Friends[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Friend|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Friend|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Friend[]    findAll()
+ * @method Friend[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FriendsRepository extends ServiceEntityRepository
+class FriendRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Friends::class);
+        parent::__construct($registry, Friend::class);
     }
 
 //    /**
