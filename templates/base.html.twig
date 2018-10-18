@@ -9,28 +9,33 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block header %}
-            <header>
-                {{ include('layouts/menu.html.twig')}}
-            </header>
-        {% endblock %}
-
-        {% block main %}
-            <main role="main" class="container">
-                {% block h1 %}<h1>{{ title }}</h1>{% endblock %}
-
-                {% block body %}{% endblock %}
-
-                {% block footer %}
-                    <hr class="featurette-divider">
-                    <footer class="footer">
-                        <p>© 2018 - PyouPyou, un projet étudiant dans le cadre du cours de Framework PHP (Symfony) avec Gabriel Pillet à Lyon Ynov Campus - Développé par Antinéa GOUTARD && Julien SEIXAS</p>
-                        <span class="footer__return"><a href="#">Retourner en haut <i class="fas fa-arrow-up"></i></a></span>
-                    </footer>
+    {% block body %}
+        <div class="by">
+            <div class="dp">
+                {% block header %}
+                    <div class="fj hidden"></div>
+                    <header class="fj menu">
+                        {{ include('layouts/menu.html.twig')}}
+                    </header>
                 {% endblock %}
-            </main>
+                {% block main %}
+                    <main role="main" class="fm">
+                        {% block content %}{% endblock %}
+                    </main>
+                {% endblock %}
+            </div>
+        </div>
+
+        {% block footer %}
+            <hr class="featurette-divider">
+            <footer class="footer">
+                <p>© 2018 - PyouPyou, un projet étudiant dans le cadre du cours de Framework PHP (Symfony) avec Gabriel Pillet à Lyon Ynov Campus - Développé par Antinéa GOUTARD && Julien SEIXAS</p>
+                <span class="footer__return"><a href="#">Retourner en haut <i class="fas fa-arrow-up"></i></a></span>
+            </footer>
         {% endblock %}
+
 
         {% block javascripts %}{% endblock %}
+    {% endblock %}
     </body>
 </html>

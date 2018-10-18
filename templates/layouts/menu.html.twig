@@ -1,39 +1,60 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <img src="/assets/img/Logo.jpg" alt="Logo" class="nav__logo">
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05" aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExample05">
-        <ul class="navbar-nav mr-auto">
-
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ path('homepage')}}">Accueil <span class="sr-only">(current)</span></a>
-            </li>
-
-            {# <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="" id="dropdown05" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-
-                <div class="dropdown-menu" aria-labelledby="dropdown05">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li> #}
-
-
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <li  class="nav-item active">
-                <a class="nav-link" href="{{ path('logout') }}">Logout ({{ app.user.username }})</a>
-
-            </li>
-            {% endif %}
-
-        </ul>
-
-        <form class="form-inline my-2 my-md-0" action="{{ path('result') }}" method="get">
-            <input class="form-control" name = "searchValue" type="text" placeholder="Search">
-        </form>
+<div class="shadow pz bpi afo">
+    <div class="qa avz">
+        <a href="profile/index.html">
+            <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/100x100" alt="">
+        </a>
     </div>
-</nav>
+</div>
+<div class="shadow pz vp vy afo">
+    <form class="form-inline my-2 my-md-0" action="{{ path('result') }}" method="get">
+        <input class="form-control" name = "searchValue" type="text" placeholder="Search">
+    </form>
+</div>
+<div class="shadow pz bpi afo">
+    <div class="qf" style="background-image: url(http://placehold.it/200x200);"></div>
+    <div class="qa avz">
+        <a href="profile/index.html">
+            <img class="rounded-circle img-fluid d-block mx-auto bpj" src="http://placehold.it/200x200" alt="">
+        </a>
+
+        <h6 class="qb">
+            <a class="boa" href="profile/index.html">Dave Gamache</a>
+        </h6>
+
+        <p class="afo">I wish i was a little bit taller, wish i was a baller, wish i had a girl… also.</p>
+
+        <ul class="bpk">
+            <li class="bpl">
+                <a href="#userModal" class="boa" data-toggle="modal">
+                    Friends
+                    <h6 class="aej">12M</h6>
+                </a>
+            </li>
+
+            <li class="bpl">
+                <a href="#userModal" class="boa" data-toggle="modal">
+                    Enemies
+                    <h6 class="aej">1</h6>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="shadow pz vp vy afo">
+    <div class="qa">
+        <h6 class="afh">Incubator Name <small>· <a href="#">Edit</a></small></h6>
+        <ul class="dc axg">
+            <li>Info <a href="#">Oh, Canada</a>
+            <li>Info 2 <a href="#">Obama</a>
+        </ul>
+    </div>
+</div>
+<div class="shadow pz vp vy afo">
+    <div class="qa">
+        <h6 class="afh">Incubator Name <small>· <a href="#">Edit</a></small></h6>
+        <ul class="dc axg">
+            <li>Info <a href="#">Oh, Canada</a>
+            <li>Info 2 <a href="#">Obama</a>
+        </ul>
+    </div>
+</div>

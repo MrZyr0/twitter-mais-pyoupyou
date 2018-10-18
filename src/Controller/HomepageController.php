@@ -16,4 +16,8 @@ class HomepageController extends AbstractController
             'title' => 'Accueil',
         ]);
     }
+
+    public function getUserData(){
+        
+    }
 }

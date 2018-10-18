@@ -1,24 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello! ✅</h1>
-
+{% block content %}
+<ul class="ca bow box afo">
+    
     {% for user in results['User'] %}
-        <li>{{ user.username|e }}</li>
+        <li class="rv b agz">
+            <img
+                    class="bos vb yb aff"
+                    src="assets/img/avatar-fat.jpg">
+            <div class="rw">
+                <div class="bpd">
+                    <div class="bpb">
+                        <small class="acx axc">{{ user.username|e }}</small>
+                        <h6>{{ user.firstname }} {{ user.lastname }}</h6>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li></li>
     {% endfor %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'src/Controller/ResultController.php'|file_link(0) }}">src/Controller/ResultController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'templates/result/index.html.twig'|file_link(0) }}">templates/result/index.html.twig</a></code></li>
-    </ul>
-</div>
+</ul>
 {% endblock %}
