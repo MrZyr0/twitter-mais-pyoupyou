@@ -18,11 +18,11 @@ class ProfilController extends AbstractController
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
 
         if($accessChecker->canReadProfil($user)){
-            var_dump($user);
+            $userConnected = $accessChecker->getUser();
             return $this->render('user/profil.html.twig', [
                 'controller_name' => 'ProfilController',
                 'entity' => $user,
-                'user' => $user,
+                'user' => $userConnected,
                 'title' => 'Profil'
             ]);
         }
