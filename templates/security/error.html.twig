@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="alert-container">
+    <div class="alert alert alert-danger" role="alert">
+      <h4 class="alert-heading">{{ title }}</h4>
+      <p>{{ desc }}</p>
+        {% if link1_path is defined %}
+            <a href="{{ path(link1_path) }}" class="alert-link">{{ link1_txt }}</a>
+        {% endif %}
+
+        {% if link2_path is defined %}
+            <a href="{{ path(link2_path) }}" class="alert-link">{{ link2__txt }}</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
