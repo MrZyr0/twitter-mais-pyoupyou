@@ -7,6 +7,7 @@ namespace App\Security;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use App\Entity\User;
 use App\Entity\Incubator;
+use App\Entity\Project;
 
 
 class AccessChecker
