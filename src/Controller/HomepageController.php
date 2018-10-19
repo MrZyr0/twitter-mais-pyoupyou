@@ -28,6 +28,12 @@ class HomepageController extends AbstractController
         }
         else
         {
+            // return $this->render('security/error.html.twig', [
+            //     'title' => "Page inaccessible !",
+            //     'desc' => "Nous avons besoin que vous soyez conecter pour vous afficher cette apge",
+            //     'link1_path' => 'signin',
+            //     'link1_txt' => 'Se connecter',
+            // ]);
             return $this->redirectToRoute('signin');
         }
     }

@@ -30,14 +30,13 @@ class MigCommand extends Command
         $io->newLine(4);
 
         $io->section('Suppression de l\'ancienne table');
-        $process = new Process('bin/console doctrine:database:drop --force');
+        $process = new Process('bin/console doctrine:database:drop --force --if-exists');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output) {
+        $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
         });
 
 
-        $process->wait();
         $io->newLine(20);
 
 
@@ -47,14 +46,13 @@ class MigCommand extends Command
         $io->newLine(4);
 
         $io->section('Création de la table');
-        $process = new Process('bin/console doctrine:database:create');
+        $process = new Process('bin/console doctrine:database:create --if-not-exists');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output) {
+        $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
         });
 
 
-        $process->wait();
         $io->newLine(20);
 
 
@@ -66,12 +64,11 @@ class MigCommand extends Command
         $io->section('Application de la migration doctrine');
         $process = new Process('bin/console doctrine:migration:migrate');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output) {
+        $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
         });
 
 
-        $process->wait();
         $io->newLine(20);
 
 
@@ -83,12 +80,11 @@ class MigCommand extends Command
         $io->section('Application des fixtures doctrine');
         $process = new Process('bin/console alice:fixture');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output) {
+        $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
         });
 
 
-        $process->wait();
         $io->newLine(20);
 
         $io->title('Mise à jour de la BDD');
@@ -96,14 +92,13 @@ class MigCommand extends Command
         $io->newLine(4);
 
         $io->section('Application des fixtures alices');
-        $process = new Process('bin/console doctrine:fixtures:load --append');
+        $process = new Process('bin/console doctrine:fixtures:load --append --env=dev');
         $process->setTimeout(300);
-        $process->run(function ($type, $buffer) use ($io, $output) {
+        $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
         });
 
 
-        $process->wait();
         $io->newLine(20);
 
         $io->success('Base de données à jour !');
