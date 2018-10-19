@@ -15,7 +15,7 @@ use App\Entity\Pyoupyou;
 use Symfony\Component\Validator\Constraints\DateTime;
 
 
-class NewPyouPyouController extends AbstractController
+class NewPyoupyouController extends AbstractController
 {
     /**
      * @Route("/newPyoupyou", name="new_pyou_pyou")
