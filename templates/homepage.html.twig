@@ -3,9 +3,6 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    {#
-    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-        {{ render(controller('App\\Controller\\newPyoupyouController::index')) }}
-    {% endif %}#}
+
     {{ include('layouts/feed.html.twig')}}
 {% endblock %}

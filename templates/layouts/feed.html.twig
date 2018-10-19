@@ -1,11 +1,16 @@
     <ul class="ca bow box afo">
+        <li class="rv b agz">
+            {{ render(controller(
+                'App\\Controller\\NewPyoupyouController::index'
+            )) }}
+        </li>
         {% for pyoupyou in pyoupyous %}
             {% set pyoupyouUser = pyoupyou.user %}
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <li class="rv b agz">
                     <img
                             class="bos vb yb aff"
-                            src="assets/img/avatar-dhg.png">
+                            src="http://placehold.it/200x200">
                     <div class="rw">
                         <div class="bpb">
                             <small class="acx axc">{{ pyoupyou.date|date('d/m H:i') }}</small>
@@ -41,10 +46,10 @@
                 <li class="rv b agz">
                     <img
                             class="bos vb yb aff"
-                            src="assets/img/avatar-dhg.png">
+                            src="http://placehold.it/200x200">
                     <div class="rw">
                         <div class="bpb">
-                            <small class="acx axc">4 min</small>
+                            <small class="acx axc">{{ pyoupyou.date|date('d/m H:i') }}</small>
                             <h6>{{ user.firstname }} {{ user.lastname }}</h6>
                         </div>
 
@@ -67,27 +72,6 @@
                                 <img data-action="zoom" data-width="1048" data-height="700" src="assets/img/unsplash_2.jpg">
                             </div>
                         </div>
-
-                        <ul class="bow afa">
-                            <li class="rv afh">
-                                <img
-                                        class="bos vb yb aff"
-                                        src="assets/img/avatar-fat.jpg">
-                                <div class="rw">
-                                    <strong>Jacon Thornton: </strong>
-                                    Donec id elit non mi porta gravida at eget metus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Sed posuere consectetur est at lobortis.
-                                </div>
-                            </li>
-                            <li class="rv">
-                                <img
-                                        class="bos vb yb aff"
-                                        src="assets/img/avatar-mdo.png">
-                                <div class="rw">
-                                    <strong>Mark Otto: </strong>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                                </div>
-                            </li>
-                        </ul>
                     </div>
                 </li>
             {% endif %}

@@ -44,7 +44,7 @@ class NewPyoupyouController extends AbstractController
             // return $this->redirectToRoute('home');
         }
 
-        return $this->render('new_pyou_pyou/index.html.twig', [
+        return $this->render('layouts/form_pyoupyou.html.twig', [
             'title' => 'Ecrire un PyouPyou',
             'form' => $form->createView(),
         ]);

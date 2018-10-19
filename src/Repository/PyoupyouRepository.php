@@ -30,7 +30,7 @@ class PyoupyouRepository extends ServiceEntityRepository
             ->join('p.repostUsers','r')
             ->andWhere('u.id=:id OR r.id=:id')
             ->setParameter('id', $_id)
-            ->orderBy('p.date')
+            ->orderBy('p.date','DESC')
             ->getQuery()
             ->getResult();
     }
@@ -44,6 +44,7 @@ class PyoupyouRepository extends ServiceEntityRepository
             ->join('p.user',  'u')
             ->join('u.followers',  'f', 'WITH', 'f.userFrom = :user')
             ->setParameter('user', $_user)
+            ->orderBy('p.date', 'DESC')
             ->getQuery()
             ->getResult();
     }
