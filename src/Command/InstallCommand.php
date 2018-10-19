@@ -208,7 +208,7 @@ class InstallCommand extends Command
         $io->newLine(4);
 
         $io->section('Init DataBase');
-        $process = new Process('bin/console doctrine:migration:migrate');
+        $process = new Process('bin/console app:mig');
         $process->setTimeout(300);
         $process->run(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
