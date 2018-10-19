@@ -5,9 +5,9 @@
 {% block content %}
     <h1>Edit Incubator</h1>
 
-    {{ include('incubator/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('admin/incubator/_form.html.twig', {'button_label': 'Update'}) }}
 
     <a href="{{ path('incubator_index') }}">back to list</a>
 
-    {{ include('incubator/_delete_form.html.twig') }}
+    {{ include('admin/incubator/_delete_form.html.twig') }}
 {% endblock %}

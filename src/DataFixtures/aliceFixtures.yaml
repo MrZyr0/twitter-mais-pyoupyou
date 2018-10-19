@@ -36,7 +36,6 @@ App\Entity\Project:
     pyoupyous: '<numberBetween(1, 100)>x @Pyoupyou*'
     isPublic: '<randomElement(<{isPublic}>)>'
     incubator: '@Incubator*'
-    users: '<numberBetween(1, 10)>x @User*'
 
 App\Entity\Pyoupyou:
   Pyoupyou{1..1000}:
@@ -51,11 +50,9 @@ App\Entity\Incubator:
   Incubator{1..3}:
     name: '<country()>'
     description: '<realtext()>'
-    projects: '<numberBetween(1, 5)>x @Project*'
     isPublic: '<randomElement(<{isPublic}>)>'
-    pyoupyous: '<numberBetween(1, 100)>x @Pyoupyou*'
 
 App\Entity\Friend:
   Friend{1..1000}:
-    userFrom: '@User*'
-    userTo: '@User*'
+    userFrom: '@User<numberBetween(251, 500)>'
+    userTo: '@User<numberBetween(1, 250)>'

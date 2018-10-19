@@ -20,32 +20,9 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $pyoupyous= $manager->getRepository(Pyoupyou::class)->findAll();
         $users = $manager->getRepository(User::class)->findAll();
-        $friends = $manager->getRepository(Friend::class)->findAll();
 
         foreach ($users as $user){
-            foreach ($pyoupyous as $pyoupyou){
-                if ($pyoupyou->getUser() == $user){
-                    $user->addPyoupyou($pyoupyou);
-                    $manager->persist($user);
-                }
-
-                if($user->getReposts()->contains($pyoupyou)){
-                    $pyoupyou->addRepostUser($user);
-                }
-            }
-
-            foreach ($friends as $friend){
-                if($friend->getUserFrom() == $user){
-                    $user->addFollower($friend);
-                }
-                elseif ($friend->getUserTo() == $user){
-                    $user->addFollowed($friend);
-                }
-                $manager->persist($user);
-            }
-
             $user->setPassword($this->encoder->encodePassword($user, $user-> getPassword())) ;
         }
         //
