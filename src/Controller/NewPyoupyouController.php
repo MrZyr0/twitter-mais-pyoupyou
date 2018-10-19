@@ -24,7 +24,7 @@ class NewPyoupyouController extends AbstractController
     {
 
 
-        $pyoupyou = new Pyoupyou;
+        $pyoupyou = new Pyoupyou();
 
         $form = $this->createForm(PyoupyouType::class, $pyoupyou);
         $form->handleRequest($request);
