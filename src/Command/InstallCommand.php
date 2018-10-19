@@ -82,7 +82,7 @@ class InstallCommand extends Command
 
         $io->section('Installation of NodeJS 1/2');
         $process = new Process('curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -');
-        $process->setTimeout(300);
+        $process->setTimeout(3000);
         $process->run(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
         });
@@ -99,7 +99,7 @@ class InstallCommand extends Command
 
         $io->section('Installation of NodeJS 2/2');
         $process = new Process('sudo apt-get install -y nodejs');
-        $process->setTimeout(300);
+        $process->setTimeout(3000);
         $process->run(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
         });
