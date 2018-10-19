@@ -67,7 +67,7 @@ form input
     height: 100vh;
     width: 100vw;
     position: relative;
-    background-color: aquamarine;
+    background-color: #0a3058;
 }
 
 .home__title
@@ -91,7 +91,7 @@ form input
 .home__title-2
 {
     z-index: 2;
-    color: aquamarine;
+    color: #0a3058;
 }
 
 .home__pannel-left
