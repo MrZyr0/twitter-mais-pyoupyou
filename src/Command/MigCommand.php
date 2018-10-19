@@ -30,7 +30,7 @@ class MigCommand extends Command
         $io->newLine(4);
 
         $io->section('Suppression de l\'ancienne table');
-        $process = new Process('bin/console doctrine:database:drop --force');
+        $process = new Process('bin/console doctrine:database:drop --force --if-exists');
         $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
@@ -46,7 +46,7 @@ class MigCommand extends Command
         $io->newLine(4);
 
         $io->section('Création de la table');
-        $process = new Process('bin/console doctrine:database:create');
+        $process = new Process('bin/console doctrine:database:create --if-not-exists');
         $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);

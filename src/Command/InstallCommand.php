@@ -26,7 +26,7 @@ class InstallCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $io->title('Installation of the project');
-        $io->progressStart(10);
+        $io->progressStart(11);
         $io->newLine(4);
 
         $io->section('Installation of composer dependencies');
@@ -120,6 +120,19 @@ class InstallCommand extends Command
         $io->newLine(20);
 
 
+        $io->title('Installation of the project');
+        $io->progressAdvance();
+        $io->newLine(4);
+
+        $io->section('Installation of NodeJS dependencies');
+        $process = new Process('npm run build');
+        $process->setTimeout(300);
+        $process->mustRun(function ($type, $buffer) use ($io, $output) {
+            $output->writeln('> '.$buffer);
+        });
+
+
+        $io->newLine(20);
 
         $io->title('Installation of the project');
         $io->progressAdvance();
