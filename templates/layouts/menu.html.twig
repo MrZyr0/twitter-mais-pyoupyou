@@ -1,7 +1,7 @@
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 <div class="shadow pz bpi afo">
     <div class="qa avz">
-        <a href="profile/index.html">
+        <a href="{{ path('homepage')}}">
             <img class="rounded-circle img-fluid d-block mx-auto" src="http://placehold.it/100x100" alt="">
         </a>
     </div>
@@ -49,7 +49,7 @@
 {% set incubator = user.project.incubator %}
 <div class="shadow pz vp vy afo">
     <div class="qa">
-        <h6 class="afh">{{ incubator.name }} <small>· <a href="{{ path('incubator', {'id': incubator.id}) }}">View</a></small></h6>
+        <h6 class="afh">{{ incubator.name }} <small>· <a href="{{ path('incub', {'id': incubator.id}) }}">View</a></small></h6>
         <ul class="dc axg">
             <li>Description :  <a href="#">{{ incubator.description }}</a>
             <li>Info 2 <a href="#">incubator</a>
@@ -58,7 +58,7 @@
 </div>
 <div class="shadow pz vp vy afo">
     <div class="qa">
-        <h6 class="afh">{{ project.name }} <small>· <a href="{{ path('project', {'id': project.id}) }}">View</a></small></h6>
+        <h6 class="afh">{{ project.name }} <small>· <a href="{{ path('group', {'id': project.id}) }}">View</a></small></h6>
         <ul class="dc axg">
             <li>Description :  <a href="#">{{ project.description }}</a>
             <li>Info 2 <a href="#">Obama</a>

@@ -1,0 +1,13 @@
+{% extends 'security/admin.html.twig'%}
+
+{% block title %}Edit Pyoupyou{% endblock %}
+
+{% block content %}
+    <h1>Edit Pyoupyou</h1>
+
+    {{ include('pyoupyou/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('pyoupyou_index') }}">back to list</a>
+
+    {{ include('pyoupyou/_delete_form.html.twig') }}
+{% endblock %}

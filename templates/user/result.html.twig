@@ -14,7 +14,7 @@
                 <div class="bpd">
                     <div class="bpb">
                         <small class="acx axc">{{ user.username|e }}</small>
-                        <h6>{{ user.firstname }} {{ user.lastname }}</h6>
+                        <h6><a class="boa" href="{{ path('profil', {'id': user.id} ) }}">{{ user.firstname }} {{ user.lastname }}</a></h6>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,39 @@
+{% extends 'security/admin.html.twig'%}
+
+{% block title %}Incubator index{% endblock %}
+
+{% block content %}
+    <h1>Incubator index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>IsPublic</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for incubator in incubators %}
+            <tr>
+                <td>{{ incubator.id }}</td>
+                <td>{{ incubator.name }}</td>
+                <td>{{ incubator.description }}</td>
+                <td>{{ incubator.isPublic ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('incubator_show', {'id': incubator.id}) }}">show</a>
+                    <a href="{{ path('incubator_edit', {'id': incubator.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('incubator_new') }}">Create new</a>
+{% endblock %}

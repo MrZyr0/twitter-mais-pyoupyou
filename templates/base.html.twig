@@ -15,7 +15,9 @@
                 {% block header %}
                     <div class="fj hidden" id="top"></div>
                     <header class="fj menu">
+                        {% block menu %}
                         {{ include('layouts/menu.html.twig')}}
+                        {% endblock %}
                     </header>
                 {% endblock %}
                 {% block main %}
