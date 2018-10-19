@@ -185,3 +185,16 @@ form input
 {
     margin-bottom: 20px;
 }
+
+
+
+/* Errors */
+.alert-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: slategrey;
+}
