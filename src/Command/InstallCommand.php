@@ -195,7 +195,7 @@ class InstallCommand extends Command
         $io->newLine(4);
 
         $io->section('Create DataBase');
-        $process = new Process('bin/console doctrine:database:create');
+        $process = new Process('bin/console doctrine:database:create --if-not-exists');
         $process->setTimeout(300);
         $process->mustRun(function ($type, $buffer) use ($io, $output) {
             $output->writeln('> '.$buffer);
