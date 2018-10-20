@@ -42,7 +42,10 @@ class PyoupyouRepository extends ServiceEntityRepository
     public function findUserFeed($_user){
         return $this->createQueryBuilder('p')
             ->join('p.user',  'u')
-            ->join('u.followers',  'f', 'WITH', 'f.userFrom = :user')
+            ->join('u.followed','f')
+            ->join('p.repostUsers','r')
+            ->join('r.followed','rf')
+            ->andWhere('f=:user OR rf.userTo =:user')
             ->setParameter('user', $_user)
             ->orderBy('p.date', 'DESC')
             ->getQuery()

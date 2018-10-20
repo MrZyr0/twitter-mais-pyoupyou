@@ -27,15 +27,15 @@
         <ul class="bpk">
             <li class="bpl">
                 <a href="#userModal" class="boa" data-toggle="modal">
-                    Friends
-                    <h6 class="aej">12M</h6>
+                    Following
+                    <h6 class="aej">{{ user.followers|length }}</h6>
                 </a>
             </li>
 
             <li class="bpl">
                 <a href="#userModal" class="boa" data-toggle="modal">
-                    Enemies
-                    <h6 class="aej">1</h6>
+                    Followers
+                    <h6 class="aej">{{ user.followed|length }}</h6>
                 </a>
             </li>
         </ul>
