@@ -144,6 +144,7 @@ class User implements UserInterface, \Serializable
      */
     private $followed;
 
+
     public function __construct()
     {
         $this->pyoupyous = new ArrayCollection();

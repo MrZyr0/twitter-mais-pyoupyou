@@ -23,7 +23,7 @@ class NewPyoupyouController extends AbstractController
     {
         $pyoupyou = new Pyoupyou();
 
-        $form = $this->createForm(PyoupyouType::class, $pyoupyou, [
+        $form = $this->createForm(NewPyoupyouType::class, $pyoupyou, [
             'action' => $this->generateUrl('newPost'),
         ]);
 
