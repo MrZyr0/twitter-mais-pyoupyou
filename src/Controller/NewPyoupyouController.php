@@ -7,7 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Security\AccessChecker;
 use Symfony\Component\Security\Core\User\UserInterface;
-use App\Form\PyoupyouType;
+use App\Form\NewPyoupyouType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Entity\Pyoupyou;
@@ -46,7 +46,7 @@ class NewPyoupyouController extends AbstractController
             return $this->redirect($previousUrl);
         }
 
-        return $this->render('layouts/form_pyoupyou.html.twig', [
+        return $this->render('componnents/newPyoupyouForm.html.twig', [
             'title' => 'Ecrire un PyouPyou',
             'form' => $form->createView(),
         ]);
