@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Pyoupyou;
 use App\Security\AccessChecker;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,30 +15,37 @@ class ActionController extends AbstractController
     /**
      * @Route("/like", name="like")
      */
-    public function like(Request $request, AccessChecker $accessChecker)
+    public function like(Request $request, AccessChecker $accessChecker, $pyoupyouId = -1)
     {
-        $pyoupyouId = $request->get('value');
-        $user = $accessChecker->getUSer();
-        $user->setLikesId($user->getLikesId()[] = $pyoupyouId);
-        $this->addToBdd($user);
+        if ($request->getMethod() == 'POST'){
+            $Id = $request->get('value');
+            $user = $accessChecker->getUSer();
+            $user->setLikesId($user->getLikesId()[] = $pyoupyouId);
+            $this->addToBdd($user);
+        }
+
 
         return $this->render('form/like.html.twig', [
-            'pathController' => 'like'
+            'pathController' => 'like',
+            'pyoupyouID' => $pyoupyouId
         ]);
     }
 
     /**
      * @Route("/repost", name="repost")
      */
-    public function repost(Request $request, AccessChecker $accessChecker)
+    public function repost(Request $request, AccessChecker $accessChecker, $pyoupyouId = -1)
     {
-        $pyoupyou = $request->get('value');
-        $user = $accessChecker->getUSer();
-        $user->addRepost($pyoupyou);
-        $this->addToBdd($user);
-
+        if ($request->getMethod() == 'POST') {
+            $Id = $request->get('value');
+            $pyoupyou = $this->getDoctrine()->getRepository(Pyoupyou::class)->find($Id);
+            $user = $accessChecker->getUSer();
+            $user->addRepost($pyoupyou);
+            $this->addToBdd($user);
+        }
         return $this->render('form/repost.html.twig', [
-            'pathController' => 'repost'
+            'pathController' => 'repost',
+            'pyoupyouId' => $pyoupyouId
         ]);
     }
 

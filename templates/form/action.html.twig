@@ -1,7 +1,7 @@
-<form class="form-inline my-2 my-md-0" action="{{ path(pathController) }}" method="get" id = "actionForm">
+<form class="form-inline my-2 my-md-0" action="{{ path(pathController) }}" method="post" id = "actionForm">
     {% block input %}
     {% endblock %}
-    <input type="hidden" value="{{ pyoupyou.id }}">
 </form>
 
 <button type="submit" form="actionForm" value="Submit">{% block button %}{% endblock %}</button>
+

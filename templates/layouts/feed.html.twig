@@ -1,4 +1,49 @@
-    <ul class="ca bow box afo">
+<div class="shadow pz bpi afo">
+    <div class="qf" style="background-image: url(http://placehold.it/200x200);"></div>
+    <div class="qa avz">
+        <a href="{{ path('profil', {'id': user.id} ) }}">
+            <img class="bpj" src="http://placehold.it/200x200" alt="">
+        </a>
+
+        <h6 class="qb">
+            <a class="boa" href="{{ path('profil', {'id': user.id} ) }}">{{ user.firstname }}  {{ user.lastname }}</a>
+        </h6>
+
+        <p class="afo">{{ user.username }}</p>
+
+        <ul class="bpk">
+            <li class="bpl">
+                <a href="#userModal" class="boa" data-toggle="modal">
+                    Following
+                    <h6 class="aej">{{ user.followers|length }}</h6>
+                </a>
+            </li>
+
+            <li class="bpl">
+                <a href="#userModal" class="boa" data-toggle="modal">
+                    Followers
+                    <h6 class="aej">{{ user.followed|length }}</h6>
+                </a>
+            </li>
+            <li class="bpl">
+                <a href="#userModal" class="boa" data-toggle="modal">
+                    Incubateur
+                    <h6 class="aej">{{ user.project.incubateur.name }}</h6>
+                </a>
+            </li>
+            <li class="bpl">
+                <a href="#userModal" class="boa" data-toggle="modal">
+                    Incubateur
+                    <h6 class="aej">{{ user.project.name }}</h6>
+                </a>
+            </li>
+        </ul>
+
+        <a class="boa" href="{{ path('logout') }}"><i class="far fa-star fa-2x"></i></a>
+    </div>
+</div>
+
+<ul class="ca bow box afo">
         <li class="rv b agz">
             {{ render(controller(
                 'App\\Controller\\NewPyoupyouController::index'
@@ -25,16 +70,18 @@
 
                         <div class="boy" data-grid="images">
                             <div style="">
-                                {% if pyoupyou.id in user.likesId %}
-                                    {{ render(controller(
-                                        'App\\Controller\\ActionController::like'
-                                    )) }}
-                                    {% else %}
-                                    <i class="fas fa-heart fa-2x"></i>
-                                {% endif %}
+                                {#{% if pyoupyou.id in user.likesId %}#}
+                                    {#{{ render(controller(#}
+                                        {#'App\\Controller\\ActionController::like',
+                                    {'pyoupyouId' : pyoupyou.id}#}
+                                    {#)) }}#}
+                                    {#{% else %}#}
+                                    {#<i class="fas fa-heart fa-2x"></i>#}
+                                {#{% endif %}#}
 
                                 {{ render(controller(
-                                    'App\\Controller\\ActionController::repost'
+                                    'App\\Controller\\ActionController::repost',
+                                    {'pyoupyouId' : pyoupyou.id}
                                 )) }}
 
                             </div>
