@@ -24,20 +24,19 @@
                         <p>{{ pyoupyou.message }}</p>
 
                         <div class="boy" data-grid="images">
-                            <div style="display: none">
-                                <img data-action="zoom" data-width="1050" data-height="700" src="assets/img/unsplash_1.jpg">
-                            </div>
+                            <div style="">
+                                {% if pyoupyou.id in user.likesId %}
+                                    {{ render(controller(
+                                        'App\\Controller\\ActionController::like'
+                                    )) }}
+                                    {% else %}
+                                    <i class="fas fa-heart fa-2x"></i>
+                                {% endif %}
 
-                            <div style="display: none">
-                                <img data-action="zoom" data-width="640" data-height="640" src="assets/img/instagram_1.jpg">
-                            </div>
+                                {{ render(controller(
+                                    'App\\Controller\\ActionController::repost'
+                                )) }}
 
-                            <div style="display: none">
-                                <img data-action="zoom" data-width="640" data-height="640" src="assets/img/instagram_13.jpg">
-                            </div>
-
-                            <div style="display: none">
-                                <img data-action="zoom" data-width="1048" data-height="700" src="assets/img/unsplash_2.jpg">
                             </div>
                         </div>
                     </div>
@@ -56,20 +55,9 @@
                         <p>{{ pyoupyou.message }}</p>
 
                         <div class="boy" data-grid="images">
-                            <div style="display: none">
-                                <img data-action="zoom" data-width="1050" data-height="700" src="assets/img/unsplash_1.jpg">
-                            </div>
-
-                            <div style="display: none">
-                                <img data-action="zoom" data-width="640" data-height="640" src="assets/img/instagram_1.jpg">
-                            </div>
-
-                            <div style="display: none">
-                                <img data-action="zoom" data-width="640" data-height="640" src="assets/img/instagram_13.jpg">
-                            </div>
-
-                            <div style="display: none">
-                                <img data-action="zoom" data-width="1048" data-height="700" src="assets/img/unsplash_2.jpg">
+                            <div style="">
+                                <i class="far fa-heart fa-2x"></i>
+                                <i class="fas fa-retweet fa-2x"></i>
                             </div>
                         </div>
                     </div>
