@@ -10,10 +10,6 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Description</th>
-                <th>Links</th>
-                <th>Picture</th>
-                <th>Cover</th>
                 <th>IsPublic</th>
                 <th>actions</th>
             </tr>
@@ -23,9 +19,6 @@
             <tr>
                 <td>{{ project.id }}</td>
                 <td>{{ project.name }}</td>
-                <td>{{ project.description }}</td>
-                <td>{{ project.picture }}</td>
-                <td>{{ project.cover }}</td>
                 <td>{{ project.isPublic ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('project_show', {'id': project.id}) }}">show</a>

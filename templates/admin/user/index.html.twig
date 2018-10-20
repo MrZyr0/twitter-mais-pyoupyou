@@ -13,15 +13,10 @@
                 <th>Id</th>
                 <th>Email</th>
                 <th>Username</th>
-                <th>Password</th>
                 <th>Lastname</th>
                 <th>Firstname</th>
-                <th>Picture</th>
-                <th>Cover</th>
-                <th>Links</th>
                 <th>Role</th>
                 <th>Statut</th>
-                <th>IsPublic</th>
                 <th>IsActive</th>
                 <th>actions</th>
             </tr>
@@ -32,14 +27,10 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.username }}</td>
-                <td>{{ user.password }}</td>
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.firstname }}</td>
-                <td>{{ user.picture }}</td>
-                <td>{{ user.cover }}</td>
                 <td>{{ user.role }}</td>
                 <td>{{ user.statut }}</td>
-                <td>{{ user.isPublic ? 'Yes' : 'No' }}</td>
                 <td>{{ user.isActive ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">show</a>

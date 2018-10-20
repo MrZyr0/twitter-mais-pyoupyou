@@ -10,7 +10,6 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>Description</th>
                 <th>IsPublic</th>
                 <th>actions</th>
             </tr>
@@ -20,7 +19,6 @@
             <tr>
                 <td>{{ incubator.id }}</td>
                 <td>{{ incubator.name }}</td>
-                <td>{{ incubator.description }}</td>
                 <td>{{ incubator.isPublic ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('incubator_show', {'id': incubator.id}) }}">show</a>
