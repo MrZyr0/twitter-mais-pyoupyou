@@ -31,13 +31,16 @@ class NewPyoupyouController extends AbstractController
 
         $form->handleRequest($request);
 
+
+
         if ($form->isSubmitted() && $form->isValid())
         {
+            // echo "OK";
             $pyoupyou = $form->getData();
-            $pyoupyou->setUser( $accessChecker->getUSer() );
+            $pyoupyou->setUser( $accessChecker->getUser() );
             $pyoupyou->setDate(new \DateTime());
 
-
+            // var_dump($pyoupyou);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($pyoupyou);
             $entityManager->flush();

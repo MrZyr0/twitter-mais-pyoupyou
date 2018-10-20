@@ -1,6 +1,11 @@
 # twitter-mais-pyoupyou
 
-PyouPyou, un projet étudiant dans le cadre du cours de Framework PHP (Symfony) avec Gabriel Pillet à Lyon Ynov Campus. Développé par Antinéa GOUTARD (@Maengast) && Julien SEIXAS (@MrZyr0)
+[![Build Status](https://travis-ci.org/tentacode-classroom/twitter-mais-pyoupyou.svg?branch=master)](https://travis-ci.org/tentacode-classroom/twitter-mais-pyoupyou)
+
+PyouPyou c'est un projet étudiant fait en 10 jours dans le cadre du cours de Framework PHP (Symfony) avec Gabriel Pillet (@tentacode) à Lyon Ynov Campus.
+Développé par Antinéa GOUTARD (@Maengast) && Julien SEIXAS (@MrZyr0)
+
+L'objectif était de recréer twitter en utilisant Symfony et à l'adapter à la structure des Ydays (jours réservés aux projets dans l'école).
 
 
 ## Install

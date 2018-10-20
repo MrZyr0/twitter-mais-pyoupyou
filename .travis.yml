@@ -1,0 +1,12 @@
+language: php
+php:
+ - 7.2.11
+
+addons:
+  mariadb: '10.1.26'
+
+install:
+    - sudo apt-get update -y
+    - sudo apt-get upgrade -y
+    - composer i
+    - bin/console app:install
