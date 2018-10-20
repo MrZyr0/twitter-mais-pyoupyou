@@ -28,5 +28,5 @@ class PyoupyouType extends AbstractType
             'data_class' => Pyoupyou::class,
         ]);
     }
-    
+
 }
