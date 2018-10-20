@@ -25,18 +25,6 @@
                     <h6 class="aej">{{ user.followed|length }}</h6>
                 </a>
             </li>
-            <li class="bpl">
-                <a href="#userModal" class="boa" data-toggle="modal">
-                    Incubateur
-                    <h6 class="aej">{{ user.project.incubateur.name }}</h6>
-                </a>
-            </li>
-            <li class="bpl">
-                <a href="#userModal" class="boa" data-toggle="modal">
-                    Incubateur
-                    <h6 class="aej">{{ user.project.name }}</h6>
-                </a>
-            </li>
         </ul>
 
         <a class="boa" href="{{ path('logout') }}"><i class="far fa-star fa-2x"></i></a>
