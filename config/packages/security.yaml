@@ -43,7 +43,9 @@ security:
     access_control:
         # - { path: ^/signup, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/signin, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin/project, roles: ROLE_PROJECT }
+        - { path: ^/admin/incubator, roles: ROLE_INCUB }
+        - { path: ^/admin, roles: [ROLE_ADMIN, ROLE_INCUB, ROLE_PROJECT] }
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/, roles: ROLE_USER }
         # - { path: ^/, roles: ROLE_USER }

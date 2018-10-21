@@ -85,10 +85,13 @@
                     <div class="rw">
                         <div class="bpb">
                             <small class="acx axc">{{ pyoupyou.date|date('d/m H:i') }}</small>
-                            <h6>{{ pyoupyouUser.firstname }} {{ pyoupyouUser.lastname }}
+                            <h6>
+                                <a href="{{ path('profil', {'id': pyoupyouUser.id} ) }}"> {{ pyoupyouUser.firstname }} {{ pyoupyouUser.lastname }}</a>
                                 {% if title == 'Profil'  and  pyoupyouUser != entity %}
                                      - retweet by {{ entity.firstname }} {{ entity.lastname }}
                                 {% endif %}
+
+
                             </h6>
                         </div>
 
@@ -109,7 +112,6 @@
                                     'App\\Controller\\ActionController::repost',
                                     {'pyoupyouId' : pyoupyou.id}
                                 )) }}
-
                             </div>
                         </div>
                     </div>
@@ -122,7 +124,7 @@
                     <div class="rw">
                         <div class="bpb">
                             <small class="acx axc">{{ pyoupyou.date|date('d/m H:i') }}</small>
-                            <h6>{{ user.firstname }} {{ user.lastname }}</h6>
+                            <h6><a href="{{ path('profil', {'id': pyoupyouUser.id} ) }}">{{ user.firstname }} {{ user.lastname }}</a></h6>
                         </div>
 
                         <p>{{ pyoupyou.message }}</p>

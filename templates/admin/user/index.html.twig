@@ -29,7 +29,9 @@
                 <td>{{ user.username }}</td>
                 <td>{{ user.lastname }}</td>
                 <td>{{ user.firstname }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
                 <td>{{ user.role }}</td>
+                {% endif %}
                 <td>{{ user.statut }}</td>
                 <td>{{ user.isActive ? 'Yes' : 'No' }}</td>
                 <td>

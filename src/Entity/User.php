@@ -522,4 +522,9 @@ class User implements UserInterface, \Serializable
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->firstname." - ".$this->lastname;
+    }
 }

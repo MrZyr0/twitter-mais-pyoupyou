@@ -29,6 +29,16 @@ class Incubator
     private $description;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $picture;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $cover;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="incubator", orphanRemoval=true)
      */
     private $projects;
@@ -75,6 +85,29 @@ class Incubator
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(?string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?string $cover): self
+    {
+        $this->cover = $cover;
 
         return $this;
     }
@@ -151,5 +184,10 @@ class Incubator
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

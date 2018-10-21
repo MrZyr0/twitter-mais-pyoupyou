@@ -44,9 +44,13 @@ class PyoupyouRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->join('p.user',  'u')
             ->leftjoin('u.followed','f')
-            ->leftjoin('p.repostUsers','r')
+            /*->leftjoin('p.repostUsers','r')
             ->leftjoin('r.followed','rf')
-            ->andWhere('f=:user OR rf.userTo =:user')
+            ->leftjoin('p.Likes','l')
+            ->leftjoin('l.followed','lf') // trop de temps d'execution */
+            ->andWhere('f.userTo=:user')
+            /*->orWhere('rf.userTo =:user')
+            ->orWhere('lf.userTo =:user')*/
             ->setParameter('user', $user)
             ->orderBy('p.date', 'DESC')
             ->getQuery()

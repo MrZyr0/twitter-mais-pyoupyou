@@ -14,6 +14,8 @@ class IncubatorType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
+            ->add('picture')
+            ->add('cover')
             ->add('isPublic')
         ;
     }

@@ -1,3 +1,206 @@
 @import "~bootstrap/scss/bootstrap";
 @import "_test";
 @import "card";
+
+form
+{
+  display: flex;
+  flex-flow: column nowrap;
+
+  justify-content: center;
+  align-items: center;
+}
+
+form *
+{
+  margin-bottom: 5px;
+}
+
+form input
+{
+  width : 100%!important;
+}
+
+.nav__logo
+{
+  width: 40px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.btn-default
+{
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+.side-pannel
+{
+  display: flex;
+  flex-flow: column;
+  flex-grow: 1;
+
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 50vw;
+}
+
+.footer__return
+{
+  margin-left: 10px;
+}
+
+.footer__return i
+{
+  margin-left: 5px;
+  color: #007bff;
+}
+
+.footer__return a
+{
+  text-decoration: none;
+}
+
+/* HOMEPAGE */
+.home__main
+{
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  background-color: #0a3058;
+}
+
+.home__title
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 99.5%;
+  position: absolute;
+  top: 55px;
+  z-index: 0;
+  margin: 0!important;
+}
+
+.home__title-1
+{
+  z-index: 2;
+  color: white;
+}
+
+.home__title-2
+{
+  z-index: 2;
+  color: #0a3058;
+}
+
+.home__pannel-left
+{
+  display: flex;
+  flex-flow: column nowrap;
+
+  align-items: center;
+  justify-content: center;
+
+  font-size: 25px;
+  font-weight: 400;
+  color: white;
+}
+
+.home__pannel-left span
+{
+  display: inline!important;
+  margin-bottom: 20px;
+}
+
+.home__pannel-left span p
+{
+  display: inline!important;
+}
+
+.home__pannel-left span i
+{
+  margin-right: 5px;
+}
+
+
+.home__pannel-right
+{
+  background-color: white;
+}
+
+.footer
+{
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: space-between;
+
+  width: 75%;
+
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  z-index: 3;
+
+  padding: 1%;
+
+  border-top: black 1px solid;
+
+  font-size: 90%;
+  font-weight: 600;
+
+  background-color: white;
+}
+
+.footer__desc
+{
+  margin: 0;
+}
+
+.authentication__footer
+{
+  display: flex;
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  position: absolute;
+  bottom: 0px;
+
+  padding-left: 5%;
+  padding-right: 5%;
+
+  font-size: 90%;
+  font-weight: 600;
+
+  color: #7e8c9c;
+}
+
+/* Authentication */
+
+.auth__title
+{
+  margin-bottom: 20px;
+}
+
+
+
+/* Errors */
+.alert-container
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: slategrey;
+}

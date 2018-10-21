@@ -14,19 +14,13 @@ class UserType extends AbstractType
         $builder
             ->add('email')
             ->add('username')
-            ->add('password')
             ->add('lastname')
             ->add('firstname')
-            ->add('picture')
-            ->add('cover')
-            ->add('links')
             ->add('role')
             ->add('statut')
             ->add('isPublic')
             ->add('isActive')
-            ->add('pinPyoupyou')
             ->add('project')
-            ->add('reposts')
         ;
     }
 
