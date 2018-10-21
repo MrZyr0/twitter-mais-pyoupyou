@@ -22,11 +22,13 @@ class NewPyoupyouController extends AbstractController
     /**
      * @Route("/newPyoupyou", name="newPost")
      */
-    public function index(Request $request, AccessChecker $accessChecker, $entity = null)
+    public function index(Request $request, AccessChecker $accessChecker, $entity)
     {
         $pyoupyou = new Pyoupyou();
         $user = $accessChecker->getUser();
-        if ($entity != null || $entity !=$user){
+
+        if ($entity != null)
+        {
             $projects = $this->getDoctrine()->getRepository(Project::class)->findAll();
             if (in_array($entity,$projects) )
                 $pyoupyou->setProject($entity);
