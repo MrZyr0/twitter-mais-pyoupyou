@@ -16,6 +16,10 @@ class SignInController extends AbstractController
         // get the signin error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
+
+        if () {
+            // code...
+        }
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/signin.html.twig', [
