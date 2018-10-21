@@ -25,6 +25,15 @@ class NewPyoupyouController extends AbstractController
     public function index(Request $request, AccessChecker $accessChecker, $entity = null)
     {
         $pyoupyou = new Pyoupyou();
+        $user = $accessChecker->getUser();
+        if ($entity != null || $entity !=$user){
+            $projects = $this->getDoctrine()->getRepository(Project::class)->findAll();
+            if (in_array($entity,$projects) )
+                $pyoupyou->setProject($entity);
+            else{
+                $pyoupyou->setIncubator($entity);
+            }
+        }
 
         $form = $this->createForm(NewPyoupyouType::class, $pyoupyou, [
             'action' => $this->generateUrl('newPost'),
@@ -34,23 +43,14 @@ class NewPyoupyouController extends AbstractController
 
         $form->handleRequest($request);
 
-
-
         if ($form->isSubmitted() && $form->isValid())
         {
-            $user = $accessChecker->getUser();
+
             // echo "OK";
             $pyoupyou = $form->getData();
             $pyoupyou->setUser( $user );
             $pyoupyou->setDate(new \DateTime());
-            if ($entity != null || $entity !=$user){
-                $projects = $this->getDoctrine()->getRepository(Project::class)->findAll();
-                if (in_array($projects,$entity) )
-                    $pyoupyou->setProject($entity);
-                else{
-                    $pyoupyou->setIncubator($entity);
-                }
-            }
+
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($pyoupyou);

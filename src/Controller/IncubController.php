@@ -43,7 +43,7 @@ class IncubController extends AbstractController
     }
 
     public function getPyoupyous($incubator){
-        return $this->getDoctrine()->getRepository(Pyoupyou::class)->findBy(array("incubator"=>$incubator),array('date' => 'ASC'));
+        return $this->getDoctrine()->getRepository(Pyoupyou::class)->findBy(array("incubator"=>$incubator),array('date' => 'DESC'));
     }
 
     public function getUsers($incubator){

@@ -43,6 +43,6 @@ class GroupController extends AbstractController
     }
 
     public function getPyoupyous($_project){
-        return $this->getDoctrine()->getRepository(Pyoupyou::class)->findBy(array("project"=>$_project),array('date' => 'ASC'));
+        return $this->getDoctrine()->getRepository(Pyoupyou::class)->findBy(array("project"=>$_project),array('date' => 'DESC'));
     }
 }
