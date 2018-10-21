@@ -12,15 +12,13 @@
         <div class="by">
             <div class="dp">
                 {% block header %}
-                    {% if is_granted('IS_AUTHENTICATED_FULLY' == false) %}
-                        <div class="fj hidden" id="top"></div>
-                        <header class="fj menu">
-                            {% block menu %}
-                                {{ include('layouts/menu.html.twig')}}
-                            {% endblock %}
-                        </header>
-                    {% endif %}
 
+                    <div class="fj hidden" id="top"></div>
+                    <header class="fj menu">
+                        {% block menu %}
+                        {{ include('layouts/menu.html.twig')}}
+                        {% endblock %}
+                    </header>
                 {% endblock %}
                 {% block main %}
                     <main role="main" class="fm">
