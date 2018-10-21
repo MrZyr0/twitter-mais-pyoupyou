@@ -20,12 +20,12 @@ class ResultController extends AbstractController
         $searchValue = $request->get('searchValue');
         $isConnected = $accessChecker->isConnected();
         $results = $this->getResults($searchValue, $isConnected);
-
+        $user = ($isConnected)? $accessChecker->getUser() : null;
         return $this->render('user/result.html.twig', [
             'controller_name' => 'ResultController',
             'title'=>'Result',
             'results'=>$results,
-            'user' =>$accessChecker->getUser()
+            'user' =>$user
         ]);
     }
 

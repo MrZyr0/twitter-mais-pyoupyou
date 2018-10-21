@@ -9,8 +9,7 @@
         <strong>Warning!</strong> Si vous n'etes pas connecté , vous n'aurez pas accés à tout le contenue.
     </div>
     {% endif %}
-    {% for key, entity in results %}
-        {% if key == 'User' %}
+    {% for entity in results['User'] %}
             <li class="rv b agz">
                 <img
                         class="bos vb yb aff"
@@ -18,29 +17,41 @@
                 <div class="rw">
                     <div class="bpd">
                         <div class="bpb">
-                            <small class="acx axc">{{ entity.username|e }}</small>
-                            <h6><a class="boa" href="{{ path('profil', {'id': entity.id} ) }}">{{ entity.firstname }} ~" - "~ {{ entity.lastname }}</a></h6>
+                            <small class="acx axc">{{ entity.username }}</small>
+                            <h6><a class="boa" href="{{ path('profil', {'id': entity.id} ) }}">{{ entity.firstname }}  -  {{ entity.lastname }}</a></h6>
                         </div>
                     </div>
                 </div>
             </li>
-        {% else %}
-            <li class="rv b agz">
-                <img
-                        class="bos vb yb aff"
-                        src="http://placehold.it/200x200">
-                <div class="rw">
-                    <div class="bpd">
-                        <div class="bpb">
-                            <h6><a class="boa" href="{{ path('profil', {'id': user.id} ) }}">{{key ~ " - " ~ entity.name}}</a></h6>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        {% endif %}
     {% endfor %}
-
-    {% for proje %}
+    {% for entity in results['Project'] %}
+            <li class="rv b agz">
+                <img
+                        class="bos vb yb aff"
+                        src="http://placehold.it/200x200">
+                <div class="rw">
+                    <div class="bpd">
+                        <div class="bpb">
+                            <h6><a class="boa" href="{{ path('group', {'id': entity.id} ) }}">{{"Project - " ~ entity.name}}</a></h6>
+                        </div>
+                    </div>
+                </div>
+            </li>
+    {% endfor %}
+    {% for entity in results['Incubator'] %}
+    <li class="rv b agz">
+        <img
+                class="bos vb yb aff"
+                src="http://placehold.it/200x200">
+        <div class="rw">
+            <div class="bpd">
+                <div class="bpb">
+                    <h6><a class="boa" href="{{ path('incub', {'id': entity.id} ) }}">{{"Incubator - " ~ entity.name}}</a></h6>
+                </div>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
 
 </ul>
 {% endblock %}

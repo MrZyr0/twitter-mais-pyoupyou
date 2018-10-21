@@ -26,14 +26,14 @@ class NewPyoupyouController extends AbstractController
     {
         $pyoupyou = new Pyoupyou();
         $user = $accessChecker->getUser();
-        if ($entity != null || $entity !=$user){
+        /*if ($entity != null || $entity !=$user){
             $projects = $this->getDoctrine()->getRepository(Project::class)->findAll();
             if (in_array($entity,$projects) )
                 $pyoupyou->setProject($entity);
             else{
                 $pyoupyou->setIncubator($entity);
             }
-        }
+        }*/ //test pour le mettre dans l'uncubateur ou le projet
 
         $form = $this->createForm(NewPyoupyouType::class, $pyoupyou, [
             'action' => $this->generateUrl('newPost'),
