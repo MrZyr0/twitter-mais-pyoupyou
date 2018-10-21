@@ -54,9 +54,15 @@ class Pyoupyou
      */
     private $repostUsers;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", inversedBy="pyoupyousLike")
+     */
+    private $Likes;
+
     public function __construct()
     {
         $this->repostUsers = new ArrayCollection();
+        $this->Likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -159,6 +165,32 @@ class Pyoupyou
         if ($this->repostUsers->contains($repostUser)) {
             $this->repostUsers->removeElement($repostUser);
             $repostUser->removeRepost($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getLikes(): Collection
+    {
+        return $this->Likes;
+    }
+
+    public function addLike(User $like): self
+    {
+        if (!$this->Likes->contains($like)) {
+            $this->Likes[] = $like;
+        }
+
+        return $this;
+    }
+
+    public function removeLike(User $like): self
+    {
+        if ($this->Likes->contains($like)) {
+            $this->Likes->removeElement($like);
         }
 
         return $this;

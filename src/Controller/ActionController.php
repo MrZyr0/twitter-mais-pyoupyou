@@ -21,15 +21,16 @@ class ActionController extends AbstractController
     {
         if ($request->getMethod() == 'POST'){
             $Id = $request->get('value');
+            $pyoupyou = $this->getDoctrine()->getRepository(Pyoupyou::class)->find($Id);
             $user = $accessChecker->getUSer();
-            $user->setLikesId($user->getLikesId()[] = $pyoupyouId);
+            $user->addPyoupyousLike($pyoupyou);
             $this->addToBdd($user);
         }
 
 
         return $this->render('form/like.html.twig', [
             'pathController' => 'like',
-            'pyoupyouID' => $pyoupyouId
+            'pyoupyouId' => $pyoupyouId
         ]);
     }
 

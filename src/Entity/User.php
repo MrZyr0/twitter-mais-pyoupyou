@@ -144,6 +144,11 @@ class User implements UserInterface, \Serializable
      */
     private $followed;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Pyoupyou", mappedBy="Likes")
+     */
+    private $pyoupyousLike;
+
 
     public function __construct()
     {
@@ -151,6 +156,7 @@ class User implements UserInterface, \Serializable
         $this->reposts = new ArrayCollection();
         $this->followers = new ArrayCollection();
         $this->followed = new ArrayCollection();
+        $this->pyoupyousLike = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -484,6 +490,34 @@ class User implements UserInterface, \Serializable
             if ($followed->getUserFrom() === $this) {
                 $followed->setUserFrom(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Pyoupyou[]
+     */
+    public function getPyoupyousLike(): Collection
+    {
+        return $this->pyoupyousLike;
+    }
+
+    public function addPyoupyousLike(Pyoupyou $pyoupyousLike): self
+    {
+        if (!$this->pyoupyousLike->contains($pyoupyousLike)) {
+            $this->pyoupyousLike[] = $pyoupyousLike;
+            $pyoupyousLike->addLike($this);
+        }
+
+        return $this;
+    }
+
+    public function removePyoupyousLike(Pyoupyou $pyoupyousLike): self
+    {
+        if ($this->pyoupyousLike->contains($pyoupyousLike)) {
+            $this->pyoupyousLike->removeElement($pyoupyousLike);
+            $pyoupyousLike->removeLike($this);
         }
 
         return $this;

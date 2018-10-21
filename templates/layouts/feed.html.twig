@@ -96,14 +96,14 @@
 
                         <div class="boy" data-grid="images">
                             <div style="">
-                                {#{% if pyoupyou.id in user.likesId %}#}
-                                    {#{{ render(controller(#}
-                                        {#'App\\Controller\\ActionController::like',
-                                    {'pyoupyouId' : pyoupyou.id}#}
-                                    {#)) }}#}
-                                    {#{% else %}#}
-                                    {#<i class="fas fa-heart fa-2x"></i>#}
-                                {#{% endif %}#}
+                                {% if pyoupyou in user.pyoupyousLike %}
+                                        <i class="fas fa-heart fa-2x"></i>
+                                    {% else %}
+                                        {{ render(controller(
+                                            'App\\Controller\\ActionController::like',
+                                            {'pyoupyouId' : pyoupyou.id}
+                                        )) }}
+                                {% endif %}
 
                                 {{ render(controller(
                                     'App\\Controller\\ActionController::repost',
