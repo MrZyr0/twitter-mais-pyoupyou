@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Incubator;
+use App\Entity\Project;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +22,7 @@ class NewPyoupyouController extends AbstractController
     /**
      * @Route("/newPyoupyou", name="newPost")
      */
-    public function index(Request $request, AccessChecker $accessChecker)
+    public function index(Request $request, AccessChecker $accessChecker, $entity = null)
     {
         $pyoupyou = new Pyoupyou();
 
@@ -40,8 +43,15 @@ class NewPyoupyouController extends AbstractController
             $pyoupyou = $form->getData();
             $pyoupyou->setUser( $user );
             $pyoupyou->setDate(new \DateTime());
+            if ($entity != null || $entity !=$user){
+                $projects = $this->getDoctrine()->getRepository(Project::class)->findAll();
+                if (in_array($projects,$entity) )
+                    $pyoupyou->setProject($entity);
+                else{
+                    $pyoupyou->setIncubator($entity);
+                }
+            }
 
-            // var_dump($pyoupyou);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($pyoupyou);
             $entityManager->flush();

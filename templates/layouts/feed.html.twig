@@ -71,7 +71,8 @@
         {% if is_granted('IS_AUTHENTICATED_FULLY') and ((title == 'Profil' and user == entity) or (entityUsers is defined and (user in entityUsers))) %}
             <li class="rv b agz">
                 {{ render(controller(
-                    'App\\Controller\\NewPyoupyouController::index'
+                    'App\\Controller\\NewPyoupyouController::index',
+                    {'entity' : entity}
                 )) }}
             </li>
         {% endif %}
