@@ -22,7 +22,7 @@ class NewPyoupyouController extends AbstractController
     /**
      * @Route("/newPyoupyou", name="newPost")
      */
-    public function index(Request $request, AccessChecker $accessChecker, $entity)
+    public function index(Request $request, AccessChecker $accessChecker)
     {
         $pyoupyou = new Pyoupyou();
         $user = $accessChecker->getUser();
