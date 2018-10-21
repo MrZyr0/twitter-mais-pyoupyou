@@ -57,10 +57,9 @@ class AccessChecker
         }
         elseif ($this->user && $this->user != "anon.")
         {
-            if ($this->user->getProject()->getIncubator()->getId() == $incub->getId())
-            {
-                return true;
-            };
+            return true;
+            
+            // if ($this->user->getProject()->getIncubator()->getId() == $incub->getId()){};
         }
         return false;
     }
@@ -73,10 +72,9 @@ class AccessChecker
         }
         elseif ($this->user && $this->user != "anon.")
         {
-            if ($this->user->getProject()->getId() == $project->getId())
-            {
-                return true;
-            };
+            return true;
+
+            // if ($this->user->getProject()->getId() == $project->getId()){};
         }
         return false;
     }
@@ -89,10 +87,9 @@ class AccessChecker
         }
         elseif ($this->user && $this->user != "anon.")
         {
-            if ($this->user->getId() == $profil->getId())
-            {
-                return true;
-            };
+            return true;
+
+            // if ($this->user->getId() == $profil->getId()){};
         }
         return false;
     }
