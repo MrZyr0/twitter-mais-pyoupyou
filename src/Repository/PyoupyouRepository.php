@@ -28,8 +28,8 @@ class PyoupyouRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->join('p.user','u')
             ->andWhere('u=:user')
-            ->join('p.repostUsers','r')
-            /*->orWhere('r=:user')*/
+            ->leftJoin('p.repostUsers','r')
+            ->orWhere('r=:user')
             ->setParameter('user', $user)
             ->orderBy('p.date','DESC')
             ->getQuery()
@@ -43,9 +43,9 @@ class PyoupyouRepository extends ServiceEntityRepository
     public function findUserFeed($user){
         return $this->createQueryBuilder('p')
             ->join('p.user',  'u')
-            ->join('u.followed','f')
-            ->join('p.repostUsers','r')
-            ->join('r.followed','rf')
+            ->leftjoin('u.followed','f')
+            ->leftjoin('p.repostUsers','r')
+            ->leftjoin('r.followed','rf')
             ->andWhere('f=:user OR rf.userTo =:user')
             ->setParameter('user', $user)
             ->orderBy('p.date', 'DESC')

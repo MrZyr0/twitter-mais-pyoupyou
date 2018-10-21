@@ -86,8 +86,8 @@
                         <div class="bpb">
                             <small class="acx axc">{{ pyoupyou.date|date('d/m H:i') }}</small>
                             <h6>{{ pyoupyouUser.firstname }} {{ pyoupyouUser.lastname }}
-                                {% if pyoupyouUser != entity and title == 'Profil' %}
-                                     - retweet by {{ enity.firstname }} {{ entity.lastname }}
+                                {% if title == 'Profil'  and  pyoupyouUser != entity %}
+                                     - retweet by {{ entity.firstname }} {{ entity.lastname }}
                                 {% endif %}
                             </h6>
                         </div>
