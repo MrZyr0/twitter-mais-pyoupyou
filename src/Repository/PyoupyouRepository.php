@@ -21,32 +21,33 @@ class PyoupyouRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $_id
+     * @param $user
      * @return Pyoupyou[] Returns an array of Pyoupyou objects
      */
-    public function findAllByUser($_id){
+    public function findAllByUser($user){
         return $this->createQueryBuilder('p')
             ->join('p.user','u')
+            ->andWhere('u=:user')
             ->join('p.repostUsers','r')
-            ->andWhere('u.id=:id OR r.id=:id')
-            ->setParameter('id', $_id)
+            /*->orWhere('r=:user')*/
+            ->setParameter('user', $user)
             ->orderBy('p.date','DESC')
             ->getQuery()
             ->getResult();
     }
 
     /**
-     * @param $_user
+     * @param $user
      * @return Pyoupyou[] Returns an array of Pyoupyou objects
      */
-    public function findUserFeed($_user){
+    public function findUserFeed($user){
         return $this->createQueryBuilder('p')
             ->join('p.user',  'u')
             ->join('u.followed','f')
             ->join('p.repostUsers','r')
             ->join('r.followed','rf')
             ->andWhere('f=:user OR rf.userTo =:user')
-            ->setParameter('user', $_user)
+            ->setParameter('user', $user)
             ->orderBy('p.date', 'DESC')
             ->getQuery()
             ->getResult();

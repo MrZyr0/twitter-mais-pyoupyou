@@ -5,22 +5,38 @@
 {% block content %}
 <ul class="ca bow box afo">
     
-    {% for user in results['User'] %}
-        <li class="rv b agz">
-            <img
-                    class="bos vb yb aff"
-                    src="assets/img/avatar-fat.jpg">
-            <div class="rw">
-                <div class="bpd">
-                    <div class="bpb">
-                        <small class="acx axc">{{ user.username|e }}</small>
-                        <h6><a class="boa" href="{{ path('profil', {'id': user.id} ) }}">{{ user.firstname }} {{ user.lastname }}</a></h6>
+    {% for key, entity in results %}
+        {% if key == 'User' %}
+            <li class="rv b agz">
+                <img
+                        class="bos vb yb aff"
+                        src="http://placehold.it/200x200">
+                <div class="rw">
+                    <div class="bpd">
+                        <div class="bpb">
+                            <small class="acx axc">{{ entity.username|e }}</small>
+                            <h6><a class="boa" href="{{ path('profil', {'id': entity.id} ) }}">{{ entity.firstname }} ~" - "~ {{ entity.lastname }}</a></h6>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </li>
-        <li></li>
+            </li>
+        {% else %}
+            <li class="rv b agz">
+                <img
+                        class="bos vb yb aff"
+                        src="http://placehold.it/200x200">
+                <div class="rw">
+                    <div class="bpd">
+                        <div class="bpb">
+                            <h6><a class="boa" href="{{ path('profil', {'id': user.id} ) }}">{{key ~ " - " ~ entity.name}}</a></h6>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        {% endif %}
     {% endfor %}
+
+    {% for proje %}
 
 </ul>
 {% endblock %}

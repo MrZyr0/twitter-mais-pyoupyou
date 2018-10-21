@@ -15,16 +15,27 @@ class GroupController extends AbstractController
      */
     public function index($id, AccessChecker $accessChecker)
     {
-        $project = $this->getData($id);
-        $pyoupyous = $this->getPyoupyous($project);
 
-        return $this->render('user/project.html.twig', [
-            'controller_name' => 'ProjectController',
-            'title'=> $project->getName(),
-            'entity' => $project,
-            'user' =>$accessChecker->getUser(),
-            'pyoupyous' => $pyoupyous
-        ]);
+        $user = $accessChecker->getUser();
+
+        if($accessChecker->canReadProject($user)){
+            $project = $this->getData($id);
+            $pyoupyous = $this->getPyoupyous($project);
+
+            return $this->render('user/project.html.twig', [
+                'controller_name' => 'ProjectController',
+                'title'=> 'Projet',
+                'entity' => $project,
+                'user' =>$user,
+                'pyoupyous' => $pyoupyous,
+                'entityUsers' => $project->getUsers()
+            ]);
+        }
+        else
+        {
+            return $this->redirectToRoute('signin');
+        }
+
     }
 
     public function getData($_id){

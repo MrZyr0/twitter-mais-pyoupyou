@@ -35,9 +35,10 @@ class NewPyoupyouController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $user = $accessChecker->getUser();
             // echo "OK";
             $pyoupyou = $form->getData();
-            $pyoupyou->setUser( $accessChecker->getUser() );
+            $pyoupyou->setUser( $user );
             $pyoupyou->setDate(new \DateTime());
 
             // var_dump($pyoupyou);

@@ -17,7 +17,7 @@ class ProfilController extends AbstractController
     public function index(AccessChecker $accessChecker, $id)
     {
         $user = $this->getUserData($id);
-        $pyoupyous = $this->getPyoupyous($id);
+        $pyoupyous = $this->getPyoupyous($user);
         if($accessChecker->canReadProfil($user)){
             return $this->render('user/profil.html.twig', [
                 'controller_name' => 'ProfilController',
@@ -37,8 +37,9 @@ class ProfilController extends AbstractController
         return $this->getDoctrine()->getRepository(User::class)->find($_id);
     }
 
-    public function getPyoupyous($_id){
-        return $this->getDoctrine()->getRepository(Pyoupyou::class)->findAllByUser($_id);
+    public function getPyoupyous($user){
+        //return $this->getDoctrine()->getRepository(Pyoupyou::class)->findBy(array("user"=>$user),array('date' => 'DESC'));
+        return $this->getDoctrine()->getRepository(Pyoupyou::class)->findAllByUser($user);
     }
 
 }

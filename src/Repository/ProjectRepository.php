@@ -31,28 +31,28 @@ class ProjectRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $_value
+     * @param $value
      * @return Project[] Returns an array of Project objects
      */
-    public function findPublicByValue(string $_value): array
+    public function findPublicByValue(string $value): array
     {
         $qb = $this->createQueryBuilder('p')
             ->andWhere('p.isPublic = 1')
             ->where('p.name LIKE :value')
-            ->setParameter('value', '%'.$_value.'%')
+            ->setParameter('value', '%'.$value.'%')
             ->getQuery();
         return $qb->execute();
     }
 
     /**
-     * @param $_value
+     * @param $value
      * @return Project[] Returns an array of Project objects
      */
-    public function findByValue(string $_value)
+    public function findByValue(string $value)
     {
         $qb = $this->createQueryBuilder('p')
             ->andWhere('p.name LIKE :value')
-            ->setParameter('value', '%'.$_value.'%')
+            ->setParameter('value', '%'.$value.'%')
             ->getQuery();
         return $qb->execute();
     }

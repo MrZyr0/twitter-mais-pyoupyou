@@ -1,42 +1,80 @@
+{% if title != 'Accueil' %}
+    {% if title == 'Profil' %}
+        {% set name =  entity.firstname ~ " - " ~ entity.lastname %}
+    {% else %}
+        {% set name =  title ~ " - " ~ entity.name %}
+    {% endif %}
+
 <div class="shadow pz bpi afo">
     <div class="qf" style="background-image: url(http://placehold.it/200x200);"></div>
     <div class="qa avz">
-        <a href="{{ path('profil', {'id': user.id} ) }}">
-            <img class="bpj" src="http://placehold.it/200x200" alt="">
-        </a>
+        <img class="bpj" src="http://placehold.it/200x200" alt="">
 
         <h6 class="qb">
-            <a class="boa" href="{{ path('profil', {'id': user.id} ) }}">{{ user.firstname }}  {{ user.lastname }}</a>
+            {{ name }}
         </h6>
 
-        <p class="afo">{{ user.username }}</p>
+        {% if  title == 'Profil'%}
+            <p class="afo">{{ entity.username }}</p>
 
-        <ul class="bpk">
-            <li class="bpl">
-                <a href="#userModal" class="boa" data-toggle="modal">
-                    Following
-                    <h6 class="aej">{{ user.followers|length }}</h6>
-                </a>
-            </li>
+            <ul class="bpk">
+                <li class="bpl">
+                    <a href="#userModal" class="boa" data-toggle="modal">
+                        Following
+                        <h6 class="aej">{{ entity.followers|length }}</h6>
+                    </a>
+                </li>
 
-            <li class="bpl">
-                <a href="#userModal" class="boa" data-toggle="modal">
-                    Followers
-                    <h6 class="aej">{{ user.followed|length }}</h6>
-                </a>
-            </li>
-        </ul>
+                <li class="bpl">
+                    <a href="#userModal" class="boa" data-toggle="modal">
+                        Followers
+                        <h6 class="aej">{{ entity.followed|length }}</h6>
+                    </a>
+                </li>
+            </ul>
+        {% else %}
+            <ul class="bpk">
+                <li class="bpl">
+                    <a href="#userModal" class="boa" data-toggle="modal">
+                        Membres
+                        <h6 class="aej">{{ entityUsers|length }}</h6>
+                    </a>
+                </li>
+            </ul>
+        {% endif %}
 
-        <a class="boa" href="{{ path('logout') }}"><i class="far fa-star fa-2x"></i></a>
+        {% if  title == 'Profil' and user != entity %}
+            {% set break = 0 %}
+            {% set isFriend = false %}
+            {% for friend in entity.followed if break == 0%}
+                {% if friend.userTo ==  user %}
+                    {% set isFriend = true %}
+                    {% set break = 1 %}
+                {% endif %}
+            {% endfor %}
+
+            {% if isFriend %}
+                <i class="far fa-star fa-2x"></i>
+            {% else%}
+                {{ render(controller(
+                    'App\\Controller\\ActionController::follow',
+                    {'pyoupyouId' : entity.id}
+                )) }}
+            {% endif %}
+
+        {% endif %}
     </div>
 </div>
+{% endif %}
 
 <ul class="ca bow box afo">
-        <li class="rv b agz">
-            {{ render(controller(
-                'App\\Controller\\NewPyoupyouController::index'
-            )) }}
-        </li>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') and ((title == 'Profil' and user == entity) or (entityUsers is defined and (user in entityUsers))) %}
+            <li class="rv b agz">
+                {{ render(controller(
+                    'App\\Controller\\NewPyoupyouController::index'
+                )) }}
+            </li>
+        {% endif %}
         {% for pyoupyou in pyoupyous %}
             {% set pyoupyouUser = pyoupyou.user %}
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -48,8 +86,8 @@
                         <div class="bpb">
                             <small class="acx axc">{{ pyoupyou.date|date('d/m H:i') }}</small>
                             <h6>{{ pyoupyouUser.firstname }} {{ pyoupyouUser.lastname }}
-                                {% if pyoupyouUser != user and title == 'Profil' %}
-                                     - retweet by {{ user.firstname }} {{ user.lastname }}
+                                {% if pyoupyouUser != entity and title == 'Profil' %}
+                                     - retweet by {{ enity.firstname }} {{ entity.lastname }}
                                 {% endif %}
                             </h6>
                         </div>

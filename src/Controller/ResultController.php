@@ -18,8 +18,8 @@ class ResultController extends AbstractController
     public function index(Request $request, AccessChecker $accessChecker)
     {
         $searchValue = $request->get('searchValue');
-
-        $results = $this->getResults($searchValue);
+        $isConnected = $accessChecker->isConnected();
+        $results = $this->getResults($searchValue, $isConnected);
 
         return $this->render('user/result.html.twig', [
             'controller_name' => 'ResultController',
@@ -29,7 +29,7 @@ class ResultController extends AbstractController
         ]);
     }
 
-    function getResults($_searchValue)
+    function getResults($searchValue, $isConnected )
     {
         $classes = [
             'User'=> User::class,
@@ -44,7 +44,12 @@ class ResultController extends AbstractController
         }
 
         foreach ($repositories as $key => $repo) {
-            $dataRepo = ($_searchValue != "")? $repo->findPublicByValue($_searchValue) : $repo->findAllPublic();
+            if ($isConnected){
+                $dataRepo = ($searchValue != "")? $repo->findByValue($searchValue) : $repo->findAll();
+
+            }else{
+                $dataRepo = ($searchValue != "")? $repo->findPublicByValue($searchValue) : $repo->findAllPublic();
+            }
             $data[$key] = $dataRepo;
         }
 

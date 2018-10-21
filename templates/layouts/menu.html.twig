@@ -49,7 +49,7 @@
 {% set incubator = user.project.incubator %}
 <div class="shadow pz vp vy afo">
     <div class="qa">
-        <h6 class="afh">{{ incubator.name }} <small>· <a href="{{ path('incub', {'id': incubator.id}) }}">View</a></small></h6>
+        <h6 class="afh">{{"Incubateur - " ~ incubator.name }} <small>· <a href="{{ path('incub', {'id': incubator.id}) }}">View</a></small></h6>
         <ul class="dc axg">
             <li>Description :  <a href="#">{{ incubator.description }}</a>
             <li>Info 2 <a href="#">incubator</a>
@@ -58,7 +58,7 @@
 </div>
 <div class="shadow pz vp vy afo">
     <div class="qa">
-        <h6 class="afh">{{ project.name }} <small>· <a href="{{ path('group', {'id': project.id}) }}">View</a></small></h6>
+        <h6 class="afh">{{ "Projet - " ~ project.name }} <small>· <a href="{{ path('group', {'id': project.id}) }}">View</a></small></h6>
         <ul class="dc axg">
             <li>Description :  <a href="#">{{ project.description }}</a>
             <li>Info 2 <a href="#">Obama</a>

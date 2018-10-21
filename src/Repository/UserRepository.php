@@ -24,37 +24,51 @@ class UserRepository extends ServiceEntityRepository
     */
     public function findAllPublic(): array
     {
-        $qb = $this->createQueryBuilder('u')
+       return $qb = $this->createQueryBuilder('u')
             ->andWhere('u.isPublic = 1')
-            ->getQuery();
-        return $qb->execute();
+            ->getQuery()
+            ->getResult();
     }
 
     /**
-     * @param $_value
+     * @param $value
      * @return User[] Returns an array of User objects
      */
-    public function findPublicByValue(string $_value): array
+    public function findPublicByValue(string $value): array
     {
-        $qb = $this->createQueryBuilder('u')
+        return $qb = $this->createQueryBuilder('u')
             ->andWhere('u.isPublic = 1')
             ->where('u.username LIKE :value OR u.firstname LIKE :value OR u.lastname LIKE :value')
-            ->setParameter('value', '%'.$_value.'%')
-            ->getQuery();
-        return $qb->execute();
+            ->setParameter('value', '%'.$value.'%')
+            ->getQuery()
+            ->getResult();
     }
 
     /**
-     * @param $_value
+     * @param $value
      * @return User[] Returns an array of User objects
      */
-    public function findByValue(string $_value)
+    public function findByValue(string $value)
     {
-        $qb = $this->createQueryBuilder('u')
+        return $qb = $this->createQueryBuilder('u')
             ->andWhere('u.username LIKE :value OR u.firstname LIKE :value OR u.lastname LIKE :value')
-            ->setParameter('value', '%'.$_value.'%')
-            ->getQuery();
-        return $qb->execute();
+            ->setParameter('value', '%'.$value.'%')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param $incub
+     * @return User[] Returns an array of User objects
+     */
+    public function findAllByIncub($incub)
+    {
+        return $qb = $this->createQueryBuilder('u')
+            ->join('u.project', 'p')
+            ->where('p.incubator = :incub')
+            ->setParameter('incub', $incub)
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

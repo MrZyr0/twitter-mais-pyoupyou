@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Friend;
 use App\Entity\Pyoupyou;
+use App\Entity\User;
 use App\Security\AccessChecker;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,10 +54,23 @@ class ActionController extends AbstractController
     /**
      * @Route("/follow", name="follow")
      */
-    public function follow(Request $request, AccessChecker $accessChecker)
+    public function follow(Request $request, AccessChecker $accessChecker, $userId = -1)
     {
+        if ($request->getMethod() == 'POST') {
+            $newFriend = new Friend();
+            $Id = $request->get('value');
+
+            $user = $this->getDoctrine()->getRepository(User::class)->find($Id);
+            $currentUser = $accessChecker->getUSer();
+
+            $newFriend->setUserFrom($user);
+            $newFriend->setUserTo($currentUser);
+            $this->addToBdd($newFriend);
+        }
+
         return $this->render('form/follow.html.twig', [
-            'pathController' => 'follow'
+            'pathController' => 'follow',
+            'userId' => $userId
         ]);
     }
 

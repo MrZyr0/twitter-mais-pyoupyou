@@ -31,28 +31,28 @@ class IncubatorRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param $_value
+     * @param $value
      * @return Incubator[] Returns an array of Incubator objects
      */
-    public function findPublicByValue(string $_value): array
+    public function findPublicByValue(string $value): array
     {
         $qb = $this->createQueryBuilder('i')
             ->andWhere('i.isPublic = 1')
             ->where('i.name LIKE :value')
-            ->setParameter('value', '%'.$_value.'%')
+            ->setParameter('value', '%'.$value.'%')
             ->getQuery();
         return $qb->execute();
     }
 
     /**
-     * @param $_value
+     * @param $value
      * @return Incubator[] Returns an array of Incubator objects
      */
-    public function findByValue(string $_value)
+    public function findByValue(string $value)
     {
         $qb = $this->createQueryBuilder('i')
             ->andWhere('i.name LIKE :value')
-            ->setParameter('value', '%'.$_value.'%')
+            ->setParameter('value', '%'.$value.'%')
             ->getQuery();
         return $qb->execute();
     }
