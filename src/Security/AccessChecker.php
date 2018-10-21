@@ -20,7 +20,7 @@ class AccessChecker
         $this->user = $tokenStorage->getToken()->getUser();
     }
 
-    public function getUser() : User
+    public function getUser()
     {
         if ($this->user && $this->user != "anon.")
         {
@@ -58,7 +58,7 @@ class AccessChecker
         elseif ($this->user && $this->user != "anon.")
         {
             return true;
-            
+
             // if ($this->user->getProject()->getIncubator()->getId() == $incub->getId()){};
         }
         return false;

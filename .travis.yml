@@ -12,7 +12,7 @@ cache:
  # Matrix to test in every php version
 matrix:
   # Fast finish allows to set the build as "finished" even if the "allow_failures" matrix elements are not finished yet.
-  fast_finish: 
+  fast_finish:
   include:
     - php: 7.2
  # Define an environment variable
@@ -27,9 +27,6 @@ install:
   - composer install
   - cp .env.dist .env
   - cp phpunit.xml.travis phpunit.xml
-  - sudo apt-get update -y
-  - sudo apt-get upgrade -y
-  - composer i
   - bin/console app:install
  # Run script
 script
@@ -37,4 +34,3 @@ script
  # After a build, send email notification with the build results
 notifications:
   email: julien.seixas@free.fr
-
