@@ -1,7 +1,7 @@
-<form class="form-inline my-2 my-md-0 actionForm" action="{{ path(pathController) }}" method="post">
+<form class="form-inline my-2 my-md-0 actionForm" action="{{ path(pathController) }}" method="post" id = {{ "form_"~pathController }}>
     {% block input %}
     {% endblock %}
 </form>
 
-<button type="submit" form="actionForm" value="Submit">{% block button %}{% endblock %}</button>
+<button type="submit" form="{{ "form_"~pathController }}" value="Submit">{% block button %}{% endblock %}</button>
 

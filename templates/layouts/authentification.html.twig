@@ -14,6 +14,12 @@
                 <span><i class="fas fa-users"></i><p>Travailler en équipes</p></span>
                 <span><i class="fas fa-comments"></i><p>Faciliter l'échange entre collègues</p></span>
                 <span><i class="fas fa-search"></i><p>Retrouver facilement vos ressources</p></span>
+
+                <form class="" action="{{ path('result') }}" method="get">
+                    <span><i class="fas fa-search"></i><p>Rechercher sans vous connecter</p></span>
+                    <input class="form-control" name = "searchValue" type="text" placeholder="Search">
+
+                </form>
         </div>
         <div class="side-pannel home__pannel-right">
             <h2 class="auth__title">{{ title }}</h2>

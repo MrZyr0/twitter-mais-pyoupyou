@@ -6,11 +6,10 @@
         </a>
     </div>
 </div>
-<div class="shadow pz vp vy afo">
-    <form class="form-inline my-2 my-md-0" action="{{ path('result') }}" method="get">
+    <form class="shadow pz vp vy afo" action="{{ path('result') }}" method="get">
         <input class="form-control" name = "searchValue" type="text" placeholder="Search">
+
     </form>
-</div>
 <div class="shadow pz bpi afo">
     <div class="qf" style="background-image: url(http://placehold.it/200x200);"></div>
     <div class="qa avz">
@@ -41,6 +40,9 @@
         </ul>
 
         <a class="boa" href="{{ path('logout') }}"><i class="fas fa-power-off fa-2x"></i></a>
+        {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_INCUB') or is_granted('ROLE_POJECT')%}
+            <a class="boa" href="{{ path('admin') }}">Administration</a>
+        {% endif %}
     </div>
 </div>
 

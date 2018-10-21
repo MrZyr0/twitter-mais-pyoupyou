@@ -54,11 +54,11 @@
             {% endfor %}
 
             {% if isFriend %}
-                <i class="far fa-star fa-2x"></i>
+                <i class="fas fa-star fa-2x"></i>
             {% else%}
                 {{ render(controller(
                     'App\\Controller\\ActionController::follow',
-                    {'pyoupyouId' : entity.id}
+                    {'userId' : entity.id}
                 )) }}
             {% endif %}
 

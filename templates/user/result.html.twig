@@ -4,7 +4,11 @@
 
 {% block content %}
 <ul class="ca bow box afo">
-    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') == false %}
+    <div class="alert alert-warning">
+        <strong>Warning!</strong> Si vous n'etes pas connecté , vous n'aurez pas accés à tout le contenue.
+    </div>
+    {% endif %}
     {% for key, entity in results %}
         {% if key == 'User' %}
             <li class="rv b agz">

@@ -7,8 +7,7 @@ $(document).ready(function(){
             type        : 'POST',
             url         : $(this).attr('action'),
             data        : $(this).serialize(),
-            dataType    :"json",
-            success     : function(response)
+            success     : function()
             {
                 window.location.reload();
             }
