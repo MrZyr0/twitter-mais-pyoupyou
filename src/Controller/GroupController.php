@@ -17,9 +17,9 @@ class GroupController extends AbstractController
     {
 
         $user = $accessChecker->getUser();
+        $project = $this->getData($id);
+        if($accessChecker->canReadProject($project)){
 
-        if($accessChecker->canReadProject($user)){
-            $project = $this->getData($id);
             $pyoupyous = $this->getPyoupyous($project);
 
             return $this->render('user/project.html.twig', [

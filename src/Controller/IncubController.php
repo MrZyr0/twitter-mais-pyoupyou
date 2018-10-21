@@ -17,10 +17,9 @@ class IncubController extends AbstractController
     public function index($id, AccessChecker $accessChecker)
     {
         $user = $accessChecker->getUser();
+        $incubator = $this->getData($id);
+        if($accessChecker->canReadIncub($incubator)){
 
-        if($accessChecker->canReadIncub($user)){
-
-            $incubator = $this->getData($id);
             $pyoupyous = $this->getPyoupyous($incubator);
 
             return $this->render('user/incubator.html.twig', [
